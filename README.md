@@ -1,80 +1,35 @@
-# CodeUrja 1.0 Hackathon
+MERN Stack Authentication with JWT: Complete Guide | Registration, Login, Profile, Protected Routes
 
-Welcome to the official repository for CodeUrja 1.0 Hackathon! This repository serves as the central hub for all participant submissions.
+In this comprehensive guide, we’ll build a full authentication system using the MERN stack (MongoDB, Express.js, React.js, and Node.js) with JWT (JSON Web Tokens) for secure authentication. This tutorial covers everything from user registration to managing protected routes.
 
-## 🚀 Getting Started: Forking Guide
+In this tutorial, I'll guide you through creating a full authentication system using the MERN stack. Below is a summary of the key steps we’ll cover:
 
-### Step 1: Fork this Repository
-1. Click the **Fork** button at the top-right corner of this page
-2. This creates a copy of this repository in your GitHub account
+Backend Setup:
 
-### Step 2: Clone Your Fork
-```bash
-git clone https://github.com/YOUR-USERNAME/CodeUrja1.0.git
-cd CodeUrja1.0
-```
+Project Setup: Initialize the project and set up the backend with Express.js and MongoDB.
+Install Dependencies: npm install express mongoose bcryptjs jsonwebtoken cors nodemon
+Create Server and Middleware: Set up the Express server, configure MongoDB, and create necessary middleware.
+Create Routes and Endpoints: Develop and test routes for /login, /register, and /profile.
+Create Models and Test APIs: Define MongoDB models and test the authentication APIs.
+Frontend Setup:
 
-### Step 3: Create Your Project Directory
-```bash
-mkdir team-YOUR-TEAM-NAME
-cd team-YOUR-TEAM-NAME
-```
+Project Setup: Initialize the frontend using React.js, Vite, and Tailwind CSS.
+Install Dependencies: npm install axios react-toastify react-router-dom.
+Create Components and UI: Build components like Header, Home, Login, Register, and Profile, and set up routing.
+Create Private Routes: Implement protected routes to secure the Profile page.
+Protecting Routes:
 
-### Step 4: Add Your Code
-- Develop your project within your team directory
-- Make sure to include a README.md in your team directory explaining your project
+To secure the routes, create a PrivateRoute.js component to handle access control for authenticated users.
+This tutorial provides a complete guide to setting up and securing a MERN stack application with JWT. Follow along to build your authentication system from scratch!
 
-### Step 5: Commit and Push Changes
-```bash
-git add .
-git commit -m "Add project: [YOUR PROJECT NAME]"
-git push origin main
-```
 
-### Step 6: Submit Your Work
-- Create a Pull Request from your fork to this original repository
-- Title your PR: "Team [YOUR TEAM NAME]: [PROJECT NAME]"
-- Include a brief description of your project in the PR description
+Key Features:
 
-## 📂 Repository Structure
-Please follow this structure for your submissions:
-```
-CodeUrja1.0/
-├── team-name-1/
-│   ├── README.md
-│   ├── src/
-│   └── ... (other project files)
-├── team-name-2/
-│   ├── README.md
-│   ├── src/
-│   └── ... (other project files)
-└── ... (other team directories)
-```
+Backend: Implementing RESTful APIs with Express.js.
+Frontend: Building a responsive UI with React.js and Tailwind CSS.
+Database: Storing user data in MongoDB.
+Authentication: Managing JWT tokens for secure login, registration, and profile protection.
+Protected Routes: Ensuring only authenticated users can access specific parts of your application.
 
-## ⚙️ Requirements
-- Your team directory must include a README.md with:
-  - Project name and description
-  - Team member names
-  - Technologies used
-  - Setup instructions
-  - Screenshots/demo (if applicable)
-- Keep your code clean and well-documented
-- Don't modify other teams' directories
-
-## 🌟 Best Practices
-- Use meaningful commit messages
-- Keep large files out of the repository (use .gitignore)
-- Regularly pull from upstream to stay updated
-- Resolve any merge conflicts before submitting your PR
-
-## 🤝 Code of Conduct
-- Respect other participants and their work
-- Give credit to any external resources used
-- Collaborate and learn from each other
-
-## 📝 Questions?
-If you have any questions or issues, please open an issue in this repository or contact the event organizers.
-
----
-
-Happy Hacking! ✨
+Tags:
+#MERNStack #JWT #ExpressJS #MongoDB #ReactJS #TailwindCSS #Authentication #FullStack #WebDevelopment
