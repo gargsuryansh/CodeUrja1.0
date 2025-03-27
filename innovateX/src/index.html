@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Crowdfunding Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+        }
+        .login-container {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .connect-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .campaign-section {
+            margin-top: 20px;
+            display: none;
+        }
+        input {
+            margin: 10px 0;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .error-message {
+            color: red;
+            display: none;
+        }
+        #campaignList {
+            text-align: left;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Blockchain Crowdfunding Platform</h2>
+        <p>Connect Your Wallet to Get Started</p>
+        
+        <button id="connectButton" class="connect-btn">
+            Connect MetaMask
+        </button>
+        
+        <div id="accountArea" style="display: none;">
+            <h3>Connected Account:</h3>
+            <p id="accountText"></p>
+        </div>
+        
+        <div id="errorMessage" class="error-message"></div>
+
+        <div id="campaignSection" class="campaign-section">
+            <h3>Create Campaign</h3>
+            <input type="text" id="campaignTitle" placeholder="Campaign Title" required>
+            <input type="text" id="campaignDescription" placeholder="Campaign Description" required>
+            <input type="number" id="campaignGoal" placeholder="Funding Goal (ETH)" step="0.01" required>
+            <button id="createCampaignBtn">Create Campaign</button>
+
+            <div id="campaignList">
+                <h4>Existing Campaigns</h4>
+                <ul id="campaignsContainer"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const connectButton = document.getElementById('connectButton');
+            const accountArea = document.getElementById('accountArea');
+            const accountText = document.getElementById('accountText');
+            const errorMessage = document.getElementById('errorMessage');
+            const campaignSection = document.getElementById('campaignSection');
+            const createCampaignBtn = document.getElementById('createCampaignBtn');
+            const campaignsContainer = document.getElementById('campaignsContainer');
+
+            const API_URL = 'http://localhost:5000';
+
+            // Check if MetaMask is installed
+            const isMetaMaskInstalled = () => {
+                return typeof window.ethereum !== 'undefined' && 
+                       window.ethereum.isMetaMask;
+            };
+
+            // Connect to MetaMask
+            const connectMetaMask = async () => {
+                // Reset previous states
+                errorMessage.style.display = 'none';
+                
+                // Check if MetaMask is installed
+                if (!isMetaMaskInstalled()) {
+                    errorMessage.textContent = 'MetaMask is not installed. Please install it first.';
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+
+                try {
+                    // Request account access
+                    const accounts = await window.ethereum.request({ 
+                        method: 'eth_requestAccounts' 
+                    });
+
+                    // Display account
+                    if (accounts.length > 0) {
+                        const account = accounts[0];
+                        accountText.textContent = account;
+                        accountArea.style.display = 'block';
+                        campaignSection.style.display = 'block';
+                        connectButton.textContent = 'Disconnect';
+
+                        // Fetch existing campaigns
+                        await fetchCampaigns();
+                    }
+                } catch (err) {
+                    // Handle connection errors
+                    errorMessage.textContent = err.message || 'Failed to connect to MetaMask';
+                    errorMessage.style.display = 'block';
+                }
+            };
+
+            // Fetch campaigns from backend
+            const fetchCampaigns = async () => {
+                try {
+                    const response = await fetch(`${API_URL}/getCampaigns`);
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        campaignsContainer.innerHTML = ''; // Clear previous campaigns
+                        data.campaigns.forEach((campaign, index) => {
+                            const li = document.createElement('li');
+                            li.textContent = `Campaign ${index + 1}: ${campaign.title} - Goal: ${campaign.goal} ETH`;
+                            campaignsContainer.appendChild(li);
+                        });
+                    } else {
+                        throw new Error(data.error || 'Failed to fetch campaigns');
+                    }
+                } catch (error) {
+                    console.error('Error fetching campaigns:', error);
+                    campaignsContainer.innerHTML = `<li>Error loading campaigns: ${error.message}</li>`;
+                }
+            };
+
+            // Create Campaign
+            const createCampaign = async () => {
+                const title = document.getElementById('campaignTitle').value;
+                const description = document.getElementById('campaignDescription').value;
+                const goal = document.getElementById('campaignGoal').value;
+                const ownerAddress = accountText.textContent;
+
+                // Simple validation
+                if (!title || !description || !goal) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`${API_URL}/createCampaign`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ title, description, goal, ownerAddress })
+                    });
+
+                    const result = await response.json();
+                    if (result.success) {
+                        alert('Campaign created successfully!');
+                        
+                        // Reset input fields
+                        document.getElementById('campaignTitle').value = '';
+                        document.getElementById('campaignDescription').value = '';
+                        document.getElementById('campaignGoal').value = '';
+                        
+                        // Refresh campaign list
+                        await fetchCampaigns();
+                    } else {
+                        const errorDetails = result.details || result.error || 'Unknown error';
+                        alert(`Failed to create campaign: ${errorDetails}`);
+                    }
+                } catch (error) {
+                    console.error('Error creating campaign:', error);
+                    alert('Network error. Unable to create campaign.');
+                }
+            };
+
+            // Handle button click
+            connectButton.addEventListener('click', async () => {
+                if (connectButton.textContent === 'Connect MetaMask') {
+                    await connectMetaMask();
+                } else {
+                    // Disconnect logic
+                    accountArea.style.display = 'none';
+                    campaignSection.style.display = 'none';
+                    campaignsContainer.innerHTML = '';
+                    connectButton.textContent = 'Connect MetaMask';
+                }
+            });
+
+            // Create Campaign Button
+            createCampaignBtn.addEventListener('click', createCampaign);
+
+            // Listen for account changes
+            if (isMetaMaskInstalled()) {
+                window.ethereum.on('accountsChanged', (accounts) => {
+                    if (accounts.length > 0) {
+                        accountText.textContent = accounts[0];
+                        accountArea.style.display = 'block';
+                        campaignSection.style.display = 'block';
+                        fetchCampaigns();
+                    } else {
+                        accountArea.style.display = 'none';
+                        campaignSection.style.display = 'none';
+                        campaignsContainer.innerHTML = '';
+                        connectButton.textContent = 'Connect MetaMask';
+                    }
+                });
+            }
+
+            // Optional: Check blockchain status on page load
+            fetch(`${API_URL}/blockchain-status`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('Blockchain connection successful');
+                    }
+                })
+                .catch(error => {
+                    console.error('Blockchain connection failed:', error);
+                });
+        });
+    </script>
+</body>
+</html>
