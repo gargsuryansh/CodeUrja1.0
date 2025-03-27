@@ -32,6 +32,11 @@ Frontend: Next.js, React.js, Tailwind CSS
 
 Backend: Node.js, Express.js
 
+Screenshot of The BugFixAI assistant
+![Screenshot 2025-03-27 134251](https://github.com/user-attachments/assets/1585ec40-e9f6-43c9-bf6c-2a700e62983b)
+![Screenshot 2025-03-27 134239](https://github.com/user-attachments/assets/f5a84894-3acd-408a-9ff0-c6fc46f44d01)
+
+
 AI/ML Model: Python (TensorFlow/PyTorch), LLM-based chatbots
 
 Database: MongoDB/PostgreSQL
