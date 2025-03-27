@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India AQI Dashboard</title>
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>India Air Quality Index Dashboard</h1>
+        </header>
+
+        <div class="map-container">
+            <!-- AQI Scale on the left -->
+            <div class="aqi-scale">
+                <h3>AQI Scale</h3>
+                <div class="scale-item">
+                    <div class="color-box good"></div>
+                    <span>0-50: Good</span>
+                </div>
+                <div class="scale-item">
+                    <div class="color-box moderate"></div>
+                    <span>51-100: Moderate</span>
+                </div>
+                <div class="scale-item">
+                    <div class="color-box unhealthy-sensitive"></div>
+                    <span>101-150: Unhealthy for Sensitive Groups</span>
+                </div>
+                <div class="scale-item">
+                    <div class="color-box unhealthy"></div>
+                    <span>151-200: Unhealthy</span>
+                </div>
+                <div class="scale-item">
+                    <div class="color-box very-unhealthy"></div>
+                    <span>201-300: Very Unhealthy</span>
+                </div>
+                <div class="scale-item">
+                    <div class="color-box hazardous"></div>
+                    <span>301+: Hazardous</span>
+                </div>
+            </div>
+
+            <!-- India Map in the center -->
+            <div class="map">
+                <svg id="india-map" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+                    <!-- India map outline -->
+                    <path d="M400,120 C550,150 650,250 680,350 C710,450 700,550 650,650 C600,750 500,780 400,780 C300,780 200,750 150,650 C100,550 90,450 120,350 C150,250 250,150 400,120 Z" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
+                    
+                    <!-- City markers will be added dynamically via JavaScript -->
+                </svg>
+            </div>
+
+            <!-- City details on the right -->
+            <div class="city-details">
+                <h3>City AQI Details</h3>
+                <div id="city-list">
+                    <!-- City details will be populated via JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <div class="realtime-container">
+            <h2>Hyderabad Real-time AQI</h2>
+            <div class="realtime-aqi">
+                <div class="aqi-value" id="hyderabad-aqi">106</div>
+                <div class="aqi-label">Unhealthy for Sensitive Groups</div>
+                <div class="aqi-updated">Last updated: <span id="last-updated"></span></div>
+            </div>
+        </div>
+
+        <div class="prediction-container">
+            <h2>Hyderabad AQI Prediction (Next 7 Days)</h2>
+            <div class="chart-container">
+                <canvas id="prediction-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/js/dashboard.js"></script>
+</body>
+</html>

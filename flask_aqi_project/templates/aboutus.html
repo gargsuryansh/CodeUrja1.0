@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AQI Forecasting</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            color: #333;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        .about-section {
+            padding: 50px 20px;
+        }
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 1s ease-in-out;
+        }
+        p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            color: #eee;
+        }
+        .team-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .team-member {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            width: 350px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease-in-out;
+        }
+        .team-member:hover {
+            transform: scale(1.08);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .profile-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 15px;
+            border: 5px solid #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s;
+        }
+        .profile-circle:hover {
+            transform: rotateY(360deg);
+        }
+        .profile-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .team-member h2 {
+            color: #fff;
+        }
+        .role {
+            font-size: 1.1em;
+            color: #ffdd57;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .social-icons a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 1.5em;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .social-icons a:hover {
+            color: #ffcc00;
+            transform: scale(1.2);
+        }
+        .duo-section {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 1.5em;
+            color: #fff;
+            font-weight: bold;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="about-section">
+        <h1>The Team Behind AQI Forecasting</h1>
+        <p>We are a dynamic duo, bringing innovation and precision to air quality forecasting.</p>
+        <div class="team-container">
+            <div class="team-member">
+                <div class="profile-circle">
+                    <img src="teammember1.jpg" alt="Jiya Darvai">
+                </div>
+                <h2>Jiya Darvai</h2>
+                <p class="role">Project Lead & Developer</p>
+                <p>Expert in Java, Python, and Data Science, leading the AQI forecasting project.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="profile-circle">
+                    <img src="teammember2.jpg" alt="Team Member 2">
+                </div>
+                <h2>Member 2</h2>
+                <p class="role">Co-Developer & Research Analyst</p>
+                <p>Specialized in data modeling and analytics, ensuring accurate AQI predictions.</p>
+            </div>
+        </div>
+        <div class="duo-section">Together, we make the impossible possible! 🚀</div>
+    </section>
+</body>
+</html>

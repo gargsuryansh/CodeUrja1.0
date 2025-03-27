@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live AQI Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylee.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">TechNauts</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('aqi') }}">AQI</a></li>
+            <li><a href="{{ url_for('forecast') }}">Forecast AQI</a></li>
+            <li><a href="{{ url_for('proactive') }}">Proactive Measures</a></li>
+            <li><a href="{{ url_for('aboutus') }}">About Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- AQI Dashboard -->
+    <div class="aqi-container">
+        <h1>🌍 Live Air Quality Index (AQI)</h1>
+
+        <!-- Amritsar AQI Section -->
+        <div class="aqi-box amritsar">
+            <h2>Hyderabad - Live AQI</h2>
+            <p class="live-aqi">🌡 AQI: <span id="amritsar-aqi">104</span></p>
+            <p class="status">🟠 Unhealthy for Sensitive Groups</p>
+            <small>Last updated: Just now</small>
+        </div>
+
+        <!-- Other Cities AQI -->
+        <h2>🌆 Other Cities</h2>
+        <div class="city-container">
+            <div class="city-box" id="delhi">
+                <h3>🌇 Delhi</h3>
+                <p class="city-aqi">AQI: <span id="delhi-aqi">212</span></p>
+            </div>
+            <div class="city-box" id="kolkata">
+                <h3>🌆 Kolkata</h3>
+                <p class="city-aqi">AQI: <span id="kolkata-aqi">110</span></p>
+            </div>
+            <div class="city-box" id="bengaluru">
+                <h3>🏙 Bengaluru</h3>
+                <p class="city-aqi">AQI: <span id="bengaluru-aqi">109</span></p>
+            </div>
+            <div class="city-box" id="bengaluru">
+                <h3>🏙 Amritsar</h3>
+                <p class="city-aqi">AQI: <span id="bengaluru-aqi">130</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/aqi.js') }}"></script>
+</body>
+</html>
+
+<style>
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #B3E5FC, #E1F5FE);
+    color: black;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+.navbar {
+    background: #0288D1;
+    padding: 15px;
+    text-align: center;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* AQI Dashboard */
+.aqi-container {
+    margin: 50px auto;
+    width: 90%;
+    max-width: 900px;
+}
+
+h1 {
+    font-size: 28px;
+    color: #01579B;
+}
+
+/* AQI Box */
+.aqi-box {
+    background: #81D4FA;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.aqi-box:hover {
+    transform: scale(1.05);
+}
+
+/* City Boxes */
+.city-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.city-box {
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.city-box:hover {
+    transform: scale(1.1);
+}
+
+/* Color Coding Based on AQI */
+#delhi { background: #D32F2F; } /* Very Unhealthy */
+#amritsar { background: #FFA000; } /* Unhealthy for Sensitive Groups */
+#kolkata { background: #1976D2; } /* Moderate */
+#bengaluru { background: #388E3C; } /* Good */
+</style>

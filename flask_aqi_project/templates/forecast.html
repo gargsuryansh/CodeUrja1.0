@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQI Forecast</title>
+
+    <!-- Bootstrap & Leaflet (for map) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+
+    <!-- Chart.js (for AQI graph) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-y: auto;
+            background-color:#B3E5FC;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color:#81D4FA;
+            padding: 12px 20px;
+            color: #004080;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+        .content{
+            display:flex;
+            gap: 2.5rem;
+            width: 100vw;
+            padding: 5rem 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            padding: 0;
+        }
+        .mapWrapper h1{
+            width: 400px;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            color: #004080;
+        }
+
+        .content {
+            padding-top: 60px;
+        }
+
+        #map {
+            height: 500px;
+            width: 100%;
+            margin: auto;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+        
+        .graph-container {
+            display: none;
+            margin-top: 30px;
+            width: 50%;
+            height: 80%;
+            margin: auto;
+        }
+
+        canvas {
+            width: 100%;
+            height: 400px;
+        }
+        .colorContainer{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            margin-top: 5rem;
+        }
+        .red{
+            background-color: red;
+            padding:5px 80px;
+        }
+        .black{
+            background-color: black;
+            padding:5px 80px;
+        }
+        .green{
+            background-color: green;
+            padding:5px 80px;
+        }
+        
+        /* HTML: <div class="loader"></div> */
+#loader {
+  width: 50px;
+  padding: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #25b09b;
+  display: none;
+  --_m: 
+    conic-gradient(#0000 10%,#000),
+    linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+          mask: var(--_m);
+  -webkit-mask-composite: source-out;
+          mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {to{transform: rotate(1turn)}}
+
+
+
+/* HTML: <div class="loader"></div> */
+/* #loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  display: none;
+}
+#loader::before,
+#loader::after {    
+  content:"";
+  grid-area: 1/1;
+  --c:no-repeat radial-gradient(farthest-side,#25b09b 92%,#0000);
+  background: 
+    var(--c) 50%  0, 
+    var(--c) 50%  100%, 
+    var(--c) 100% 50%, 
+    var(--c) 0    50%;
+  background-size: 12px 12px;
+  animation: l12 1s infinite;
+}
+#loader::before {
+  margin: 4px;
+  filter: hue-rotate(45deg);
+  background-size: 8px 8px;
+  animation-timing-function: linear
+}
+
+@keyframes l12 { 
+  100%{transform: rotate(.5turn)}
+} */
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">TechNauts</div>
+    <ul class="nav-links">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('aqi') }}">AQI</a></li>
+            <li><a href="{{ url_for('forecast') }}">Forecast AQI</a></li>
+            <li><a href="{{ url_for('proactive') }}">Proactive Measures</a></li>
+            <li><a href="{{ url_for('aboutus') }}">About Us</a></li>
+    </ul>
+</nav>
+
+<div class="content">
+    <div class="mapWrapper">
+        <h1>India AQI Forecast</h1>
+        <div id="map"></div>
+    </div>
+    
+        <div id="loader"></div>
+
+    
+    
+    <div class="graph-container" id="graphContainer">
+        <h2>Real-time AQI & Forecast</h2>
+        <canvas id="forecastChart"></canvas>
+        <div class="colorContainer">
+            
+        </div>
+    </div>
+</div>
+
+<script>
+        var map = L.map('map').setView([22.5937, 78.9629], 5);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+}).addTo(map);
+
+// City data with specific AQI values for 7 days
+var cities = [
+    {
+        name: "Hyderabad", lat: 17.3850, lon: 78.4867, aqi: 106,
+        forecast: [107, 105, 106, 107, 117, 114, 115]
+    },
+    {
+        name: "Aizwal", lat: 23.7271, lon: 92.7176, aqi: 105,
+        forecast: [91, 90, 90, 91, 92, 97, 96]
+    },
+    {
+        name: "Amravati", lat: 20.9374, lon: 77.7796, aqi: 140,
+        forecast: [151, 148, 147, 150, 149, 159, 160]
+    },
+    {
+        name: "Amritsar", lat: 31.6340, lon: 74.8723, aqi: 130,
+        forecast: [133, 134, 135, 136, 138, 141, 142]
+    },
+    {
+        name: "Bengaluru", lat: 12.9716, lon: 77.5946, aqi: 109,
+        forecast: [100, 101, 99, 100, 109, 107, 111]
+    },
+    {
+        name: "Chandigarh", lat: 30.7333, lon: 76.7794, aqi: 126,
+        forecast: [138, 137, 137, 138, 137, 144, 146]
+    }
+];
+
+// Loop through cities and add markers
+cities.forEach(city => {
+    var marker = L.circleMarker([city.lat, city.lon], {
+        color: "orange",
+        radius: 8,
+        fillOpacity: 0.8
+    }).addTo(map).bindPopup(`<b>${city.name}</b><br>AQI: ${city.aqi}<br><i>Tap for Graph</i>`);
+
+    // On marker click, show graph
+    marker.on('click', function () {
+        document.getElementById("loader").style.display = "block";
+        document.getElementById("graphContainer").style.display = "none";
+
+        setTimeout(() => {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("graphContainer").style.display = "block";
+            loadGraph(city);
+        }, 1500); // Delay for effect
+    });
+});
+
+function loadGraph(city) {
+    var ctx = document.getElementById('forecastChart').getContext('2d');
+
+    // Destroy previous chart instance if it exists
+    if (window.myChart) {
+        window.myChart.destroy();
+    }
+
+    // Create a new Chart instance
+    window.myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            datasets: [{
+                label: `${city.name} AQI Forecast`,
+                data: city.forecast,
+                borderColor: 'orange',
+                backgroundColor: 'rgba(255, 165, 0, 0.2)',
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    suggestedMin: 90,
+                    suggestedMax: 150
+                }
+            }
+        }
+    });
+}
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNauts - AQI Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <!-- Background Animation -->
+    <div id="particles-js"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TechNauts</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('aqi') }}">AQI</a></li>
+            <li><a href="{{ url_for('forecast') }}">Forecast AQI</a></li>
+            <li><a href="{{ url_for('proactive') }}">Proactive Measures</a></li>
+            <li><a href="{{ url_for('aboutus') }}">About Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Center Content -->
+    <div class="content">
+        <h1 class="fade-in">AQI Prediction & Proactive Measures</h1>
+        <p class="fade-in">Analyzing Air Quality for a Healthier Future</p>
+        <a href="{{ url_for('forecast') }}"><button id="getStarted" class="pulse">Detailed AQI</button></a>
+        
+    </div>
+
+    <!-- Features Section -->
+    <div class="features">
+        <h2>🌍 Key Features</h2>
+        <div class="feature-boxes">
+            <div class="feature-box"> Real-Time AQI Monitoring</div>
+            <div class="feature-box"> AQI Forecasting</div>
+            <div class="feature-box"> Proactive Health Measures</div>
+            <div class="feature-box"> Health Risk Assessment</div>
+            <div class="feature-box"> Geographical AQI Comparison</div>
+            <div class="feature-box"> Data Visualization & Insights </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // AQI Value Simulation
+            const aqiStatus = document.getElementById("aqi-status");
+
+            function updateAQI() {
+                let aqi = Math.floor(Math.random() * 300); // Simulating AQI between 0-300
+                
+                if (aqi <= 50) {
+                    aqiStatus.innerHTML = `AQI: <span id="aqi-value">${aqi}</span> (Good)`;
+                    aqiStatus.style.color = "#2ecc71";
+                } else if (aqi <= 100) {
+                    aqiStatus.innerHTML = `AQI: <span id="aqi-value">${aqi}</span> (Moderate)`;
+                    aqiStatus.style.color = "#f1c40f";
+                } else if (aqi <= 200) {
+                    aqiStatus.innerHTML = `AQI: <span id="aqi-value">${aqi}</span> (Unhealthy)`;
+                    aqiStatus.style.color = "#e67e22";
+                } else {
+                    aqiStatus.innerHTML = `AQI: <span id="aqi-value">${aqi}</span> (Hazardous)`;
+                    aqiStatus.style.color = "#e74c3c";
+                }
+            }
+
+            document.getElementById("getStarted").addEventListener("click", updateAQI);
+
+            // Particle.js Configuration
+            particlesJS("particles-js", {
+                particles: {
+                    number: { value: 100, density: { enable: true, value_area: 800 } },
+                    color: { value: "#ffffff" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5, random: false },
+                    size: { value: 3, random: true },
+                    move: { enable: true, speed: 1 }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
