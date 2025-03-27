@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script>
+        async function signUp() {
+            const aadhaar = document.getElementById("signUpAadhaar").value;
+            const password = document.getElementById("signUpPassword").value;
+    
+            const response = await fetch("http://localhost:5000/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ aadhaar, password })
+            });
+    
+            const data = await response.json();
+            alert(data.message);
+        }
+    
+        async function signIn() {
+            const aadhaar = document.getElementById("signInAadhaar").value;
+            const password = document.getElementById("signInPassword").value;
+    
+            const response = await fetch("http://localhost:5000/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ aadhaar, password })
+            });
+    
+            const data = await response.json();
+            if (data.token) {
+                localStorage.setItem("token", data.token);
+                alert("Login successful!");
+                window.location.href = "dashboard.html";
+            } else {
+                alert(data.error);
+            }
+        }
+    </script>
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Land Management Software|Land System|Land Software|Digibhoomi</title>
+    <meta name="description" content="Digibhoomi: Streamlined land management for data-driven decisions, encroachment & legal handling, with satellite map view. Optimize your land assets with us.">
+
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="land management, land management system, land software, GIS, mapping, property management, land assets, Digibhoomi">
+    <meta name="author" content="Digibhoomi">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Land Management Software | Digibhoomi">
+    <meta property="og:description" content="Digibhoomi: Streamlined land management for data-driven decisions, encroachment & legal handling, with satellite map view.">
+    <meta property="og:image" content="https://ext.same-assets.com/3096360381/1319196518.jpeg">
+    <meta property="og:url" content="https://Digibhoomiapp.com/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Land Management Software | Digibhoomi">
+    <meta name="twitter:description" content="Digibhoomi: Streamlined land management for data-driven decisions, encroachment & legal handling, with satellite map view.">
+    <meta name="twitter:image" content="https://ext.same-assets.com/3096360381/1319196518.jpeg">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://ext.same-assets.com/3517396988/30617220.png" type="image/x-icon">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="#">
+                    <img src="logo.png" alt="Digibhoomi Logo">
+                </a>
+            </div>
+            <nav>
+                <ul class="main-menu">
+                    <li><a href="profile.html">My Profile</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="contact.html">Contact</a></li>                    
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Unlock the Power of Next Gen Land Record Management</h1>
+                <p>Discover Digibhoomi- Your Digital Hub for Land Information and Efficiency</p>
+                <div class="hero-buttons">
+                    <a href="index.html" class="btn btn-primary">Get Started</a>
+                    <a href="https://www.youtube.com/" class="btn btn-secondary"><i class="fas fa-play-circle"></i> Watch Video</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="floating.png" alt="Digibhoomi Hero Image">
+            </div>4
+        </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="welcome">
+        <div class="container">
+            <h2 class="section-title">Welcome to Digibhoomi: Your Land Information Solution</h2>
+            <p>Land ownership is a crucial aspect of economic stability and development, yet it remains plagued by fraudulent records, missing documents, and lack of accessibility. These issues lead to legal disputes, unauthorized claims, and financial fraud, affecting property owners, government agencies, and financial institutions.Traditional land record systems, whether paper-based or digital, lack the security and transparency needed to prevent manipulation and unauthorized modifications. As a result, property transactions become complex, time-consuming, and vulnerable to fraud. To address these challenges, a secure, transparent, and technologically advanced land record management system is essential. By leveraging tamper-proof document storage, automated registration processes, and real-time geospatial mapping, land transactions can be made more secure, efficient, and legally verifiable.A modernized approach to land records will not only eliminate disputes but also enhance trust, accessibility, and accountability in property ownership.</p>
+        </div>
+    </section>
+    <!-- Products Insights Section -->
+   <!-- Include Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<section class="products-insights py-5 bg-light text-center">
+    <div class="container">
+        <h2 class="section-title fw-bold mb-4 text-dark">Dashboard</h2>
+        <div class="row g-4">
+            <div class="col-md-4 col-sm-6">
+                <a href="profile.html" class="text-decoration-none">
+                    <div class="card border-0 shadow text-center p-4 transition-effect">
+                        <img src="5.svg" alt="Profile Management" class="mx-auto mb-3" style="width: 80px; height: 80px;">
+                        <h3 class="fs-5 fw-semibold">Profile Management</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="land.html" class="text-decoration-none">
+                    <div class="card border-0 shadow text-center p-4 transition-effect">
+                        <img src="6.svg" alt="Land Records" class="mx-auto mb-3" style="width: 80px; height: 80px;">
+                        <h3 class="fs-5 fw-semibold">Land Records</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="regis.html" class="text-decoration-none">
+                    <div class="card border-0 shadow text-center p-4 transition-effect">
+                        <img src="7.svg" alt="Land Ownership Management" class="mx-auto mb-3" style="width: 80px; height: 80px;">
+                        <h3 class="fs-5 fw-semibold">Land Ownership Management</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="ekyc.html" class="text-decoration-none">
+                    <div class="card border-0 shadow text-center p-4 transition-effect">
+                        <img src="8.svg" alt="e-KYC" class="mx-auto mb-3" style="width: 80px; height: 80px;">
+                        <h3 class="fs-5 fw-semibold">e-KYC</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="bank.html" class="text-decoration-none">
+                    <div class="card border-0 shadow text-center p-4 transition-effect">
+                        <img src="9.svg" alt="Bank & Loan Verification" class="mx-auto mb-3" style="width: 80px; height: 80px;">
+                        <h3 class="fs-5 fw-semibold">Bank & Loan Verification</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="chatbot.html" class="text-decoration-none">
+                    <div class="card border-0 shadow text-center p-4 transition-effect">
+                        <img src="2.svg" alt="AI Chatbot" class="mx-auto mb-3" style="width: 80px; height: 80px;">
+                        <h3 class="fs-5 fw-semibold">AI Chatbot</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="contact.html" class="text-decoration-none">
+                    <div class="card border-0 shadow text-center p-4 transition-effect">
+                        <img src="3.svg" alt="Contact" class="mx-auto mb-3" style="width: 80px; height: 80px;">
+                        <h3 class="fs-5 fw-semibold">Contact</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="about.html" class="text-decoration-none">
+                    <div class="card border-0 shadow text-center p-4 transition-effect">
+                        <img src="4.svg" alt="About Us" class="mx-auto mb-3" style="width: 80px; height: 80px;">
+                        <h3 class="fs-5 fw-semibold">About Us</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+
+<!-- Bootstrap JS (Optional) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+    .transition-effect {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .transition-effect:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(135deg, #6e8efb, #a777e3);
+        color: white;
+    }
+</style>
+
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-description">This FAQ section for Digibhoomi (<a href="#">Land Management System</a>) is designed to provide comprehensive answers to common queries related to our land management software. This section aims to assist users in understanding the functionality, <a href="#">benefits, and integration aspects of Digibhoomi</a>, ensuring they can effectively utilize the system to meet their land management needs.</p>
+
+            <div class="faq-items">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is a Land Management System (Digibhoomi)?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>A Land Management System is a digital solution designed to help organizations manage, monitor, and optimize the use of land assets. It integrates tools for land administration, mapping, property management, leasing, and legal compliance, facilitating efficient land use.</p>
+                    </div>
+                </div>
+                 <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What are the Key Features of a Land Management System?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Key features of Digibhoomi typically include:</p>
+                        <ul>
+                            <li>Land parcel mapping (GIS integration)</li>
+                            <li>Land ownership and tenure records</li>
+                            <li>Lease and contract management</li>
+                            <li>Encroachment detection</li>
+                            <li>Compliance and regulatory tracking</li>
+                            <li>Document management for property records</li>
+                            <li>Workflow automation for land transactions</li>
+                            <li>Reporting and analytics</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How Does an Digibhoomi Integrate with GIS?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Digibhoomi integrates Geographic Information Systems (GIS) to provide visual representations of land parcels, boundaries, and other spatial data. This enables users to view, edit, and analyze maps directly within the system, offering better land-use insights and decision-making.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can Digibhoomi Help with Lease Management?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, Digibhoomi can manage lease agreements, renewals, payments, and other lease-related information. It automates lease tracking, alerts for renewal deadlines, and ensures compliance with lease terms, making lease management more efficient.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Voice Search Navigation</title>
+        <style>
+            /* Button Styling */
+            .voice-btn {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: #ff5722;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+                text-decoration: none;
+            }
+    
+            /* Hover Effect */
+            .voice-btn:hover {
+                background-color: #e64a19;
+            }
+        </style>
+    </head>
+    <body>
+    
+        <!-- Voice Search Button -->
+        <button class="voice-btn" onclick="startVoiceSearch()">🎤</button>
+    
+        <script>
+            function startVoiceSearch() {
+                // Check if browser supports Speech Recognition
+                if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+                    recognition.lang = 'en-US';
+                    recognition.start();
+    
+                    recognition.onresult = function(event) {
+                        let spokenWord = event.results[0][0].transcript.toLowerCase();
+                        console.log("Recognized Word:", spokenWord);
+    
+                        // Define redirection paths based on spoken word
+                        const pages = {
+                            "home": "home.html",
+                            "profile": "profile.html",
+                            "about": "about.html",
+                            "contact": "contact.html",
+                            "services": "services.html"
+                        };
+    
+                        if (pages[spokenWord]) {
+                            window.location.href = pages[spokenWord]; // Redirect to the page
+                        } else {
+                            alert("Page not found for: " + spokenWord);
+                        }
+                    };
+    
+                    recognition.onerror = function(event) {
+                        console.error("Speech recognition error:", event.error);
+                    };
+                } else {
+                    alert("Your browser does not support voice recognition.");
+                }
+            }
+        </script>
+    
+    </body>
+    </html>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Button</title>
+    <style>
+        /* Styling for chatbot button */
+        .chatbot-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+        }
+
+        /* Hover effect */
+        .chatbot-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="chatbot.html" target="_blank" class="chatbot-btn">help</a>
+
+</body>
+</html>
+
+    
+    
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <p class="section-description">Ready to elevate your land management experience with Digibhoomi? Get started today to experience the future of land management firsthand. Contact us for a demo, request a quote, or explore our solutions to see how Digibhoomi can transform the way you manage your land assets.</p>
+
+            <div class="contact-buttons">
+                <a href="contact.html" class="btn btn-primary">Request For Demo</a>
+                <a href="index.html" class="btn btn-secondary">Brochure Download</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <a href="#">
+                        <img src="logo.png" alt="Digibhoomi Logo">
+                    </a>
+                </div>
+
+                <div class="footer-info">
+                    <div class="footer-column">
+                        <h3>Digibhoomi Infotech Pvt. Ltd., India</h3>
+                        <p>scheme-74, Vijaynagar, Indore,India</p>
+                        <p><strong>Phone:</strong> 012-3456-7890</p>
+                        <p><strong>Mobile:</strong> +91 8462 802086</p>
+                        <p><strong>Email:</strong> info@Digibhoomiapp.com</p>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Digibhoomi, LLC</h3>
+                        <p>Indore,India</p>
+                        <p><strong>Phone:</strong>(614) 859-5678</p>
+                        <p><strong>Email:</strong> info@Digibhoomiapp.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-middle">
+                <div class="footer-column">
+                    <h3>About Digibhoomi</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Features</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="#">Land Records</a></li>
+                        <li><a href="#">Land Ownership Management</a></li>
+                        <li><a href="#">e-KYC</a></li>
+                        <li><a href="#">Bank & Loan Verification</a></li>
+                        <li><a href="#">Geospatial Mapping</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Our Social Networks</h3>
+                    <p>Stay updated on the latest Land Management trends and Digibhoomi news through our social media channels:</p>
+                    <div class="social-links">
+                        <a href="http://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright <strong>Digibhoomi</strong>. All Rights Reserved</p>
+                <p>Powered by <a href="https://www.digibhoomi.com/">Digibhoomi</a></p>
+            </div>
+        </div>
+    </footer>

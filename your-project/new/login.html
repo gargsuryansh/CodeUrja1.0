@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url('loginbg.jpg') no-repeat center center/cover;
+        }
+        .container {
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+        .form {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .form.active {
+            display: flex;
+        }
+        h2 {
+            color: #133913;
+            margin-bottom: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background-color: rgba(54, 36, 156, 0.9);
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: rgba(34, 23, 99, 0.9);
+        }
+        .switch-form {
+            margin-top: 10px;
+        }
+        .switch-form a {
+            color: rgba(54, 36, 156, 0.8);
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: -5px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <!-- Login Form -->
+        <form id="signInForm" class="form active" onsubmit="return validateSignIn()">
+            <h2>Login</h2>
+            <input type="text" id="signInAadhaar" placeholder="Aadhaar Number" required maxlength="12">
+            <input type="password" id="signInPassword" placeholder="Password" required>
+            <button type="submit">Sign In</button>
+            <p class="switch-form">Don't have an account? <a href="#" onclick="switchForm('signUpForm')">Sign Up</a></p>
+        </form>
+
+        <!-- Sign Up Form -->
+        <form id="signUpForm" class="form" onsubmit="return startOTPVerification()">
+            <h2>Sign Up</h2>
+            <input type="text" id="signUpAadhaar" placeholder="Aadhaar Number" required maxlength="12">
+            <input type="text" id="signUpPhone" placeholder="Mobile Number" required maxlength="10">
+            <button type="submit">Send OTP</button>
+            <p class="switch-form">Already have an account? <a href="#" onclick="switchForm('signInForm')">Sign In</a></p>
+        </form>
+
+        <!-- OTP Verification -->
+        <form id="otpForm" class="form" onsubmit="return verifyOTP()">
+            <h2>Enter OTP</h2>
+            <input type="text" id="otpInput" placeholder="Enter OTP" required maxlength="6">
+            <button type="submit">Verify OTP</button>
+        </form>
+
+        <!-- Password Creation -->
+        <form id="passwordForm" class="form" onsubmit="return createPassword()">
+            <h2>Set Password</h2>
+            <input type="password" id="newPassword" placeholder="Create Password" required>
+            <input type="password" id="confirmNewPassword" placeholder="Confirm Password" required>
+            <button type="submit">Set Password</button>
+        </form>
+    </div>
+
+    <script>
+        let aadhaar, phone, generatedOTP;
+
+        function switchForm(formId) {
+            document.querySelectorAll('.form').forEach(form => form.classList.remove('active'));
+            document.getElementById(formId).classList.add('active');
+        }
+
+        function startOTPVerification() {
+            aadhaar = document.getElementById('signUpAadhaar').value;
+            phone = document.getElementById('signUpPhone').value;
+
+            if (!/^\d{12}$/.test(aadhaar) || !/^\d{10}$/.test(phone)) {
+                alert("Enter a valid Aadhaar (12 digits) and Phone number (10 digits).");
+                return false;
+            }
+
+            generatedOTP = Math.floor(100000 + Math.random() * 900000);
+            alert("OTP Sent: " + generatedOTP); // Mock OTP (Replace with actual API call)
+            
+            switchForm('otpForm');
+            return false;
+        }
+
+        function verifyOTP() {
+            let enteredOTP = document.getElementById('otpInput').value;
+
+            if (enteredOTP !== generatedOTP.toString()) {
+                alert("Invalid OTP. Please try again.");
+                return false;
+            }
+
+            switchForm('passwordForm');
+            return false;
+        }
+
+        function createPassword() {
+            let password = document.getElementById('newPassword').value;
+            let confirmPassword = document.getElementById('confirmNewPassword').value;
+
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            alert("Account Created Successfully! You can now log in.");
+            switchForm('signInForm');
+            return false;
+        }
+
+        function validateSignIn() {
+            let aadhaar = document.getElementById('signInAadhaar').value;
+            let password = document.getElementById('signInPassword').value;
+
+            if (!/^\d{12}$/.test(aadhaar) || password === "") {
+                alert("Enter a valid Aadhaar number and password.");
+                return false;
+            }
+
+            alert("Login successful!");
+            window.location.href = 'index.html';
+            return false;
+        }
+    </script>
+</body>
+</html>

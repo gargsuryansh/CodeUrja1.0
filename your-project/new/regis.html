@@ -1,0 +1,69 @@
+                                                                                                                                                                   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Land Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Land Registration Form</h2>
+        <form id="registrationForm">
+            <div class="form-step step-1">
+                <h3>Applicant's Personal Details</h3>
+                <label>Full Name: <input type="text" name="fullName" required></label>
+                <label>Father’s/Husband’s Name: <input type="text" name="guardianName" required></label>
+                <label>Date of Birth: <input type="date" name="dob" required></label>
+                <label>Gender: 
+                    <select name="gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </label>
+                <label>Aadhaar Number: <input type="text" name="aadhaar" required></label>
+                <label>PAN Card Number: <input type="text" name="pan" required></label>
+                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                <label>Email ID: <input type="email" name="email" required></label>
+                <label>Residential Address: <textarea name="address" required></textarea></label>
+                <button type="button" class="next-btn">Next</button>
+            </div>
+            
+            <div class="form-step step-2 hidden">
+                <h3>Property Details</h3>
+                <label>Land Title/Property Type: <input type="text" name="propertyType" required></label>
+                <label>Total Area: <input type="text" name="area" required></label>
+                <label>Survey/Plot Number: <input type="text" name="surveyNumber" required></label>
+                <label>Property Address: <textarea name="propertyAddress" required></textarea></label>
+                <label>Geospatial Coordinates: <input type="text" name="coordinates"></label>
+                <label>Nearby Landmark: <input type="text" name="landmark"></label>
+                <label>Land Use Type: <input type="text" name="landUse"></label>
+                <button type="button" class="prev-btn">Previous</button>
+                <button type="button" class="next-btn">Next</button>
+            </div>
+            
+            <div class="form-step step-3 hidden">
+                <h3>Ownership & Seller Details</h3>
+                <label>Current Owner’s Name: <input type="text" name="ownerName" required></label>
+                <label>Previous Owner’s Name: <input type="text" name="prevOwner"></label>
+                <label>Ownership Type: <input type="text" name="ownershipType" required></label>
+                <label>Mode of Acquisition: <input type="text" name="acquisitionMode" required></label>
+                <button type="button" class="prev-btn">Previous</button>
+                <button type="button" class="next-btn">Next</button>
+            </div>
+            
+            <div class="form-step step-4 hidden">
+                <h3>Upload Documents</h3>
+                <label>Upload Sale Deed: <input type="file" name="saleDeed" required></label>
+                <label>Upload Encumbrance Certificate: <input type="file" name="encumbranceCert" required></label>
+                <label>Upload PAN Card: <input type="file" name="panDoc" required></label>
+                <button type="button" class="prev-btn">Previous</button>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

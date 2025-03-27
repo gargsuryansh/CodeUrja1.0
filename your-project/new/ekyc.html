@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-KYC Aadhaar Verification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1385e0;
+            --secondary-color: #0d6db7;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #fd7e14;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            height: fit-content;
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            color: var(--primary-color);
+        }
+
+        .service-list {
+            list-style: none;
+        }
+
+        .service-list li {
+            margin-bottom: 12px;
+        }
+
+        .service-list a {
+            display: block;
+            padding: 8px 10px;
+            color: #555;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .service-list a:hover {
+            background-color: var(--light-color);
+            color: var(--primary-color);
+        }
+
+        .service-list i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .verification-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .card-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .aadhaar-input-container {
+            margin-bottom: 30px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .aadhaar-input-fields {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .aadhaar-input {
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            font-size: 24px;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .aadhaar-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(19, 133, 224, 0.2);
+        }
+
+        .captcha-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .captcha-box {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            border-radius: var(--border-radius);
+            font-family: 'Courier New', monospace;
+            font-size: 20px;
+            letter-spacing: 3px;
+            user-select: none;
+        }
+
+        .refresh-captcha {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .verify-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .verify-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .verification-result {
+            display: none;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            margin-top: 30px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .verification-success {
+            background-color: rgba(40, 167, 69, 0.1);
+            border-left: 5px solid var(--success-color);
+        }
+
+        .verification-failure {
+            background-color: rgba(220, 53, 69, 0.1);
+            border-left: 5px solid var(--danger-color);
+        }
+
+        .result-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .success-title {
+            color: var(--success-color);
+        }
+
+        .failure-title {
+            color: var(--danger-color);
+        }
+
+        .result-details {
+            margin-top: 15px;
+        }
+
+        .process-steps {
+            margin-top: 30px;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            background-color: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex-grow: 1;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .step-description {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .info-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--warning-color);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 30px;
+        }
+
+        .info-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--warning-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .aadhaar-input {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .aadhaar-input-fields {
+                flex-wrap: wrap;
+            }
+
+            .aadhaar-input {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .captcha-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="logo.png" alt="UIDAI Logo">
+                <div class="logo-text">e-KYC Portal</div>
+            </div>
+            <div class="nav-links">
+                <a href="#"><i class="fas fa-home"></i> Home</a>
+                <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+                <a href="#"><i class="fas fa-phone-alt"></i> Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="sidebar">
+                <h3 class="sidebar-title">Aadhaar Services</h3>
+                <ul class="service-list">
+                    <li><a href="#"><i class="fas fa-exchange-alt"></i> Change Online</a></li>
+                    <li><a href="#"><i class="fas fa-search"></i> Search by Name</a></li>
+                    <li><a href="#"><i class="fas fa-mobile-alt"></i> Mobile Number Update</a></li>
+                    <li><a href="#"><i class="fas fa-sync-alt"></i> Check Update Status</a></li>
+                    <li><a href="#"><i class="fas fa-link"></i> Ration Card Link</a></li>
+                    <li><a href="#"><i class="fas fa-university"></i> EPF Aadhaar Link</a></li>
+                    <li><a href="#"><i class="fas fa-piggy-bank"></i> Bank Account Link</a></li>
+                    <li><a href="#"><i class="fas fa-id-card"></i> e-Aadhaar</a></li>
+                    <li><a href="#"><i class="fas fa-mobile"></i> mAadhaar</a></li>
+                    <li><a href="#"><i class="fas fa-camera"></i> Photo Change</a></li>
+                    <li><a href="#"><i class="fas fa-key"></i> Password</a></li>
+                    <li><a href="#"><i class="fas fa-file-alt"></i> Update Form</a></li>
+                </ul>
+            </div>
+
+            <div class="verification-card">
+                <h1 class="card-title">e-KYC Aadhaar Verification</h1>
+                <p class="card-subtitle">Verify your Aadhaar card to ensure your Aadhaar number has been issued and is valid.</p>
+
+                <div class="aadhaar-input-container">
+                    <label class="input-label">UID - 12 Digit Aadhaar Number</label>
+                    <div class="aadhaar-input-fields">
+                        <input type="text" class="aadhaar-input" maxlength="1" pattern="[0-9]">
+                        <input type="text" class="aadhaar-input" maxlength="1" pattern="[0-9]">
+                        <input type="text" class="aadhaar-input" maxlength="1" pattern="[0-9]">
+                        <input type="text" class="aadhaar-input" maxlength="1" pattern="[0-9]">
+                        <input type="text" class="aadhaar-input" maxlength="1" pattern="[0-9]">
+                        <input type="text" class="aadhaar-input" maxlength="1" pattern="[0-9]">
+                        <input type="text" class="aadhaar-input" maxlength="1" pattern="[0-9]">
+                        <input type="text" class="aadhaar-input" maxlength="1" pattern="[0-9]">
+                        <input type="text" class="aadhaar-input" maxlength="1" pattern="[0-9]">
+                        <input type="text" class="aadhaar-input" maxlength="1" pattern="[0-9]">
+                        <input type="text" class="aadhaar-input" maxlength="1" pattern="[0-9]">
+                        <input type="text" class="aadhaar-input" maxlength="1" pattern="[0-9]">
+                    </div>
+                    <p style="color: #666; font-size: 14px;">Enter the 12 digit Aadhaar number in the boxes shown above.</p>
+                </div>
+
+                <div class="captcha-container">
+                    <div>
+                        <label class="input-label">Security Code</label>
+                        <div class="captcha-box" id="captchaText">A7B9C3</div>
+                    </div>
+                    <button type="button" class="refresh-captcha" id="refreshCaptcha">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <input type="text" placeholder="Enter the code" style="flex-grow: 1; padding: 12px; border: 1px solid #ddd; border-radius: var(--border-radius);">
+                </div>
+
+                <button type="button" class="verify-btn" id="verifyBtn">
+                    <i class="fas fa-check-circle"></i> Verify Aadhaar
+                </button>
+
+                <div class="verification-result" id="verificationResult">
+                    <div class="result-title">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Aadhaar Verification Successful</span>
+                    </div>
+                    <div class="result-details">
+                        <p>Your Aadhaar number has been successfully verified with UIDAI.</p>
+                        <p><strong>Details:</strong></p>
+                        <ul style="margin-top: 10px; margin-left: 20px;">
+                            <li>Status: Active</li>
+                            <li>Gender: Male</li>
+                            <li>Age Group: 30-40 years</li>
+                            <li>State: Maharashtra</li>
+                            <li>Mobile: Linked</li>
+                            <li>Email: Linked</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="process-steps">
+                    <h3 style="margin-bottom: 20px; color: var(--primary-color);">Process to verify your Aadhaar Card</h3>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">Visit UIDAI Website</div>
+                            <div class="step-description">Go to the official UIDAI website or use this portal</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">Enter Aadhaar Number</div>
+                            <div class="step-description">Provide your 12-digit Aadhaar number</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">Complete Verification</div>
+                            <div class="step-description">Enter security code and verify your details</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-title"><i class="fas fa-info-circle"></i> Important Information</div>
+                    <p>It is very important to verify your Aadhaar card to ensure that your Aadhaar number has been issued and is valid. The gender, age group, and the state to which the cardholder belongs will be displayed at the time of verification of Aadhaar.</p>
+                    <p style="margin-top: 10px;">The cardholder can immediately contact UIDAI if there is any inaccuracy in the information presented. The cardholder can either call the toll-free number or send an email to contact UIDAI.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const aadhaarInputs = document.querySelectorAll('.aadhaar-input');
+            const refreshCaptcha = document.getElementById('refreshCaptcha');
+            const captchaText = document.getElementById('captchaText');
+            const verifyBtn = document.getElementById('verifyBtn');
+            const verificationResult = document.getElementById('verificationResult');
+
+            // Generate random captcha
+            function generateCaptcha() {
+                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
+                let result = '';
+                for (let i = 0; i < 6; i++) {
+                    result += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                captchaText.textContent = result;
+            }
+
+            // Handle Aadhaar input navigation
+            aadhaarInputs.forEach((input, index) => {
+                // Move to next input when a digit is entered
+                input.addEventListener('input', function() {
+                    if (this.value.length === 1) {
+                        if (index < aadhaarInputs.length - 1) {
+                            aadhaarInputs[index + 1].focus();
+                        }
+                    }
+                });
+
+                // Handle backspace to move to previous input
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && this.value.length === 0) {
+                        if (index > 0) {
+                            aadhaarInputs[index - 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Refresh captcha
+            refreshCaptcha.addEventListener('click', generateCaptcha);
+
+            // Verify Aadhaar
+            verifyBtn.addEventListener('click', function() {
+                // Show loading state
+                verifyBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+                verifyBtn.disabled = true;
+
+                // Simulate API call
+                setTimeout(function() {
+                    // Reset button
+                    verifyBtn.innerHTML = '<i class="fas fa-check-circle"></i> Verify Aadhaar';
+                    verifyBtn.disabled = false;
+
+                    // Show verification result
+                    verificationResult.style.display = 'block';
+                    verificationResult.className = 'verification-result verification-success';
+                    verificationResult.innerHTML = `
+                        <div class="result-title success-title">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Aadhaar Verification Successful</span>
+                        </div>
+                        <div class="result-details">
+                            <p>Your Aadhaar number has been successfully verified with UIDAI.</p>
+                            <p><strong>Details:</strong></p>
+                            <ul style="margin-top: 10px; margin-left: 20px;">
+                                <li>Status: Active</li>
+                                <li>Gender: Male</li>
+                                <li>Age Group: 30-40 years</li>
+                                <li>State: Maharashtra</li>
+                                <li>Mobile: Linked</li>
+                                <li>Email: Linked</li>
+                            </ul>
+                        </div>
+                    `;
+
+                    // Scroll to result
+                    verificationResult.scrollIntoView({ behavior: 'smooth' });
+                }, 2000);
+            });
+
+            // Generate initial captcha
+            generateCaptcha();
+        });
+    </script>
+</body>
+</html>
