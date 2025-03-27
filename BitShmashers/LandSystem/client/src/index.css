@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Define CSS Variables for Color Palette */
+:root {
+    /* Primary Colors */
+    --color-primary: #2563eb;
+    --color-primary-light: #60a5fa;
+    --color-primary-dark: #1d4ed8;
+    
+    /* Secondary Colors */
+    --color-secondary: #4f46e5;
+    --color-secondary-light: #818cf8;
+    --color-secondary-dark: #4338ca;
+    
+    /* Success Colors */
+    --color-success: #10b981;
+    --color-success-light: #34d399;
+    --color-success-dark: #059669;
+    
+    /* Warning Colors */
+    --color-warning: #f59e0b;
+    --color-warning-light: #fbbf24;
+    --color-warning-dark: #d97706;
+    
+    /* Error Colors */
+    --color-error: #ef4444;
+    --color-error-light: #f87171;
+    --color-error-dark: #dc2626;
+    
+    /* Gradient Colors */
+    --gradient-primary: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+    --gradient-secondary: linear-gradient(to right, var(--color-secondary), var(--color-primary));
+    
+    /* Neutral Colors */
+    --color-gray-50: #f9fafb;
+    --color-gray-100: #f3f4f6;
+    --color-gray-200: #e5e7eb;
+    --color-gray-300: #d1d5db;
+    --color-gray-400: #9ca3af;
+    --color-gray-500: #6b7280;
+    --color-gray-600: #4b5563;
+    --color-gray-700: #374151;
+    --color-gray-800: #1f2937;
+    --color-gray-900: #111827;
+  }
+                                 
+
+/* Import the custom fonts */
+@font-face {
+    font-family: 'FoundersGrotesk-Semibold';
+    src: url('/fonts/FoundersGrotesk-Semibold.woff2') format('woff2'),
+         url('/fonts/FoundersGrotesk-Semibold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeueMontreal-Regular';
+    src: url('/fonts/NeueMontreal-Regular.woff2') format('woff2'),
+         url('/fonts/NeueMontreal-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Apply fonts */
+body {
+    font-family: 'NeueMontreal-Regular', sans-serif; /* Default font for normal text */
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+}
+
+/* Utility classes */
+.font-normal {
+    font-family: 'NeueMontreal-Regular', sans-serif;
+}
+
+.font-heading {
+    font-family: 'FoundersGrotesk-Semibold', sans-serif;
+}
+
+/* Apply heading font to main headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'FoundersGrotesk-Semibold', sans-serif;
+}
+
+/* Button styles */
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: var(--color-button-text);
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+/* Use CSS Variables for Colors */
+.bg-primary {
+    background-color: var(--color-primary);
+}
+
+.bg-secondary {
+    background-color: var(--color-secondary);
+}
+
+.text-primary {
+    color: var(--color-primary);
+}
+
+.text-secondary {
+    color: var(--color-secondary);
+}
+
+
+#services::-webkit-scrollbar{
+    display: none;
+}
+
+
+/* For Webkit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #1a202c; /* Dark gray track */
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #4a90e2; /* Blue thumb */
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #357ABD;
+  }
+  
