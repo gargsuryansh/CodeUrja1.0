@@ -1,78 +1,57 @@
-# AI-Powered News Verifier
+# Half Baked Coders
 
-## Problem Statement
-AI-Powered Fake News Detection
-- Create an AI-based news verification tool that detects misinformation by analyzing text, images and sources.
+# AI-Powered News Verification System
 
-## 📌 Overview
-AI-Powered News Verifier is a web-based platform that helps users distinguish real news from misinformation. It features a **Next.js frontend** for a smooth user experience, a **Flask backend** for processing requests, and an **AI Agent** that scans the web for real news and performs **similarity search** to verify sources.
+## Overview
+VeriFact-AI is a **Next.js + Flask**-based platform that verifies news authenticity using AI-powered **similarity search** and **web scraping**. The core feature is an **AI Agent** that searches the web for credible sources and compares them to the article in question.
 
-## Team Members:
-- Abhivyakt Bhati
-- Armaan Raj Thakur
-- Fardeen Khan
-- Pushkar Singh
+Additionally, we've built a **browser extension** that allows users to verify news articles directly from any source they are reading.
 
-## 🚀 Features
-### ✅ **Next.js Frontend**
-- Modern, responsive UI for seamless user experience.
+## Tech Stack
+### Frontend (Next.js)
+- Built with **Next.js** (React framework) for fast rendering and SEO benefits.
 - Uses **Tailwind CSS** for styling.
-- Interactive search and result visualization.
+- Integrates with the backend for real-time verification of news articles.
+- Displays news credibility scores and source comparisons.
 
-### 🛠 **Flask Backend**
-- API built with **Flask** to handle requests.
-- Uses **natural language processing (NLP)** to compare news.
-- Handles similarity search using **vector embeddings**.
+### Backend (Flask)
+- **Flask** serves as the backend API.
+- Scrapes and processes real-time news from **credible sources**.
+- Uses **vector-based similarity search** to compare news articles.
+- Leverages **AI-based NLP models** for content analysis.
 
-### 🔍 **Similarity Search**
-- Extracts key features from input text.
-- Compares against a database of reliable news sources.
-- Uses **cosine similarity / semantic search** for accuracy.
+### AI Agent & Similarity Search
+- AI Agent fetches and evaluates multiple news sources to cross-check facts.
+- Uses **embedding models** (e.g., OpenAI, Sentence Transformers) for similarity detection.
+- Filters out misinformation and ranks sources based on credibility.
 
-### 🤖 **AI Agent (MVP)**
-- Searches the web for **real news** related to a given topic.
-- Fetches articles from trusted sources.
-- Compares retrieved articles with input text to find factual accuracy.
-- Provides users with a reliability score and citations.
+### Browser Extension
+- The **Chrome Extension** allows users to verify news instantly.
+- It scans the current article and provides real-time authenticity predictions.
+- Uses the same AI model as the platform for consistency.
 
-## 🏗 Tech Stack
-- **Frontend**: Next.js, React, Tailwind CSS
-- **Backend**: Flask, Python
-- **AI & NLP**: OpenAI/Gemini API, Sentence Transformers
+## How It Works
+1. **User inputs or visits a news article.**
+2. **Backend scrapes related news sources.**
+3. **AI Agent analyzes and compares the information.**
+4. **Similarity search determines factual accuracy.**
+5. **Users get a credibility score & source comparisons.**
 
-## 📦 Setup
-### 1️⃣ Clone the repository
-```bash
-git clone https://github.com/yourusername/news-verifier.git
-cd news-verifier
-```
+## MVP Features
+- ✅ **AI-powered web search & similarity matching**
+- ✅ **Next.js frontend for user-friendly interactions**
+- ✅ **Flask API for data processing & analysis**
+- ✅ **Real-time news credibility scoring**
+- ✅ **Chrome extension for instant verification**
 
-### 2️⃣ Install dependencies
-#### Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-```
+## Future Enhancements
+- 🔄 Improving AI model accuracy & credibility scoring.
+- 📊 Adding a dashboard for tracking misinformation trends.
+- 🌍 Expanding to multiple languages for broader accessibility.
 
-#### Backend
-```bash
-cd backend
-pip install -r requirements.txt
-python app.py
-```
-
-### 3️⃣ Run the project
-- Open `http://localhost:3000` for the frontend.
-- Flask API runs on `http://localhost:5000`.
-
-## 📌 Future Improvements
-- **Improved AI Model** for better news verification.
-- **User Authentication** to save verification history.
-- **Browser Extension** for on-the-go news fact-checking.
-
-## 🎯 MVP Goal
-To develop an AI-powered agent that searches the web for real news, analyzes it, and provides **fact-based verification** against user-provided news.
+## Team
+🚀 **Half Baked Coders** - A team passionate about **AI, Web3, and Fullstack development**!
 
 ---
-💡 **Contribute**: PRs are welcome! Reach out if you have ideas to enhance the project. 🚀
+Let us know if you have any feedback or ideas to improve the project! 🚀
+
