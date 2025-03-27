@@ -1,0 +1,128 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e2e;
+    color: #ffffff;
+}
+
+/* Navbar Styles */
+header {
+    background-color: #282a36;
+    padding: 15px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding: 0 20px;
+}
+
+nav li {
+    display: flex;
+    align-items: center;
+}
+
+nav img {
+    width: 80px; /* Increased size */
+    margin-right: 15px;
+    border-radius: 5px;
+}
+
+nav span {
+    font-size: 22px;
+    font-weight: bold;
+    color: #f8f8f2;
+}
+
+nav button {
+    background: #1fb8ff;
+    border: none;
+    padding: 8px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+nav button:hover {
+    background: #42d67c;
+}
+
+/* Editor Container */
+.editor-container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+    background: #282a36;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* CodeMirror Styling */
+.CodeMirror {
+    width: 100%;
+    height: 400px;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 10px;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.buttons button {
+    background: #ff79c6;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.buttons button:hover {
+    background: #ff57b0;
+}
+
+.cards{
+    display: flex;
+    align-content: center;
+}
+.room-card {
+    background: #1e1e2e;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+    margin: 20px auto;
+}
+.room-card h2 {
+    margin-bottom: 10px;
+}
+.room-card button {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.room-card button:hover {
+    background: #45a049;
+}
