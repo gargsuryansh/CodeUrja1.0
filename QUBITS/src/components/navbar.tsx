@@ -119,7 +119,7 @@ export default function Navbar() {
                     );
                 })
 : (
-                pages.slice(5,8).map((page) => {
+                pages.slice(5,9).map((page) => {
                     if(session && !page.protected){return null}
                     return (
 
@@ -239,7 +239,7 @@ function MobileNav({
         );
     })
 ) : (
-    pages.slice(5, 8).map(({ title, route }) => {
+    pages.slice(5, 9).map(({ title, route }) => {
         return (
             <Link key={uuidv4()} href={route}>
                 {title}
