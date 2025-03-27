@@ -1,3 +1,5 @@
+Team Name: Core Four
+
 # CodeUrja 1.0 Hackathon
 
 Welcome to the official repository for CodeUrja 1.0 Hackathon! This repository serves as the central hub for all participant submissions.
