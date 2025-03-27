@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - Static Site Generator</title>
+    <link rel="stylesheet" href="contact.css" />
+
+    <script>
+      let recognition;
+      let isListening = false;
+
+      function toggleVoiceRecognition() {
+        if (!isListening) {
+          recognition = new (window.SpeechRecognition ||
+            window.webkitSpeechRecognition)();
+          recognition.lang = "en-US";
+          recognition.continuous = true;
+          recognition.interimResults = false;
+
+          recognition.onresult = function (event) {
+            const command = event.results[
+              event.results.length - 1
+            ][0].transcript
+              .toLowerCase()
+              .trim();
+
+            if (command.includes("go to home")) {
+              window.location.href = "home.html";
+            } else if (command.includes("go to get started")) {
+              window.location.href = "index.html";
+            } else if (command.includes("go to contact us")) {
+              window.location.href = "contact.html";
+            } else if (command.includes("go to echos ai")) {
+              window.location.href = "chatbox.html";
+            } else if (command.startsWith("name is")) {
+              document.querySelector("input[name='full_name']").value = command
+                .replace("name is", "")
+                .trim();
+            } else if (command.startsWith("email is")) {
+              document.querySelector("input[name='email']").value = command
+                .replace("email is", "")
+                .trim();
+            } else if (command.startsWith("phone is")) {
+              document.querySelector("input[name='phone']").value = command
+                .replace("phone is", "")
+                .trim();
+            } else if (command.startsWith("message is")) {
+              document.querySelector("textarea[name='message']").value = command
+                .replace("message is", "")
+                .trim();
+            } else if (command.includes("send message")) {
+              document.querySelector("form").submit();
+            }
+          };
+
+          recognition.start();
+          isListening = true;
+          document.getElementById("mic-button").innerText = "⏹ Stop";
+        } else {
+          recognition.stop();
+          isListening = false;
+          document.getElementById("mic-button").innerText = "🎤";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Web Echos</h1>
+      <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href="index.html">Get Started</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="chatbox.html">Echos.AI</a>
+        <button class="button" onclick="exportContent()">Export Site</button>
+        <button
+          class="button"
+          id="mic-button"
+          onclick="toggleVoiceRecognition()"
+        >
+          🎤
+        </button>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h2>Contact Us!</h2>
+      <p>Please fill the form below</p>
+      <form action="https://api.web3forms.com/submit" method="post">
+        <input
+          type="hidden"
+          name="access_key"
+          value="13487db0-e965-41af-827c-1ea0f873cdda"
+        />
+        <input type="text" name="full_name" placeholder="Full Name" required />
+        <input type="email" name="email" placeholder="Email Address" required />
+        <input type="tel" name="phone" placeholder="Phone Number" required />
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <footer class="footer">
+      <p>&copy; 2025 Web Echos. Designed and Developed by Garv Sharma.</p>
+      <div class="social-links">
+        <a href="#">Twitter</a> | <a href="#">LinkedIn</a> |
+        <a href="#">GitHub</a>
+      </div>
+    </footer>
+  </body>
+</html>

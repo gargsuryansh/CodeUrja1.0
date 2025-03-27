@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .fade-in {
+        opacity: 0;
+        transform: translateY(-20px);
+        animation: fadeIn 1s forwards;
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .pop-in {
+        opacity: 0;
+        transform: scale(0.8);
+        animation: popIn 0.4s ease-out forwards;
+      }
+      @keyframes popIn {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .tick-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80px;
+      }
+      .tick {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #4caf50;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: popIn 0.5s ease-out forwards;
+      }
+      .tick::after {
+        content: "✔";
+        font-size: 36px;
+        color: white;
+        font-weight: bold;
+      }
+
+      @media screen and (max-width: 768px) {
+        main {
+          max-width: 100%;
+          padding: 15px;
+        }
+
+        .navbar {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .navbar a {
+          padding: 10px;
+          display: block;
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body class="flex items-center justify-center h-screen bg-gray-900">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96 text-center fade-in">
+      <h2 class="text-2xl font-bold text-blue-400 mb-4">Sign In</h2>
+
+      <form id="loginForm" class="space-y-4">
+        <div class="mb-4 text-left">
+          <label class="text-gray-300 text-sm">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            class="w-full mt-1 px-3 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+
+        <div class="mb-4 text-left">
+          <label class="text-gray-300 text-sm">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            class="w-full mt-1 px-3 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-lg transition hover:scale-105"
+        >
+          Login
+        </button>
+      </form>
+
+      <div class="mt-4 space-y-2">
+        <button
+          class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 rounded-lg transition hover:scale-105"
+          id="googleSignIn"
+        >
+          Sign in with Google
+        </button>
+        <button
+          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg transition hover:scale-105"
+          id="linkedinSignIn"
+        >
+          Sign in with LinkedIn
+        </button>
+      </div>
+
+      <p class="text-gray-400 text-sm mt-4">
+        Don't have an account?
+        <a href="#" class="text-blue-400 hover:underline" id="signupLink"
+          >Sign up</a
+        >
+      </p>
+    </div>
+
+    <div
+      id="loginSuccess"
+      class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+    >
+      <div class="bg-white p-6 rounded-lg shadow-lg text-center pop-in">
+        <div class="tick-container">
+          <div class="tick"></div>
+        </div>
+        <h3 class="text-green-500 text-lg font-bold mt-4">Login Successful!</h3>
+        <p class="text-gray-700 mt-2">Redirecting to your dashboard...</p>
+      </div>
+    </div>
+
+    <div
+      id="signupFormContainer"
+      class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+    >
+      <div
+        class="bg-gray-800 p-8 rounded-lg shadow-lg w-96 text-center fade-in"
+      >
+        <h2 class="text-2xl font-bold text-blue-400 mb-4">Sign Up</h2>
+        <form id="signupForm" class="space-y-4">
+          <div class="mb-4 text-left">
+            <label class="text-gray-300 text-sm">Email</label>
+            <input
+              type="email"
+              id="signupEmail"
+              placeholder="Enter your email"
+              class="w-full mt-1 px-3 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          <div class="mb-4 text-left">
+            <label class="text-gray-300 text-sm">Password</label>
+            <input
+              type="password"
+              id="signupPassword"
+              placeholder="Enter your password"
+              class="w-full mt-1 px-3 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded-lg transition hover:scale-105"
+          >
+            Register
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("signupLink")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          document
+            .getElementById("signupFormContainer")
+            .classList.remove("hidden");
+        });
+
+      document
+        .getElementById("signupForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          let email = document.getElementById("signupEmail").value;
+          let password = document.getElementById("signupPassword").value;
+
+          if (email && password) {
+            localStorage.setItem(email, password);
+            alert("Signup successful! You can now login.");
+            document
+              .getElementById("signupFormContainer")
+              .classList.add("hidden");
+          } else {
+            alert("Please enter valid details.");
+          }
+        });
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          let email = document.getElementById("email").value;
+          let password = document.getElementById("password").value;
+          let storedPassword = localStorage.getItem(email);
+
+          if (storedPassword && storedPassword === password) {
+            document.getElementById("loginSuccess").classList.remove("hidden");
+
+            setTimeout(() => {
+              window.location.href = "index.html";
+            }, 2000);
+          } else {
+            alert("Invalid email or password.");
+          }
+        });
+
+      document
+        .getElementById("googleSignIn")
+        .addEventListener("click", function () {
+          window.location.href = "https://accounts.google.com/signin";
+        });
+
+      document
+        .getElementById("linkedinSignIn")
+        .addEventListener("click", function () {
+          window.location.href = "https://www.linkedin.com/login";
+        });
+    </script>
+  </body>
+</html>
