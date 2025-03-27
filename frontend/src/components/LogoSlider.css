@@ -1,0 +1,19 @@
+
+
+.logo-slider-container {
+  max-width: 900px; /* Adjust as needed */
+  margin: 5px auto;
+}
+
+.logo-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo-image {
+  max-height: 80px; /* Adjust as needed */
+  max-width: 150px; /* Adjust as needed */
+  object-fit: contain;
+}
