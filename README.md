@@ -1,80 +1,78 @@
-# CodeUrja 1.0 Hackathon
+# AI-Powered News Verifier
 
-Welcome to the official repository for CodeUrja 1.0 Hackathon! This repository serves as the central hub for all participant submissions.
+## Problem Statement
+AI-Powered Fake News Detection
+- Create an AI-based news verification tool that detects misinformation by analyzing text, images and sources.
 
-## 🚀 Getting Started: Forking Guide
+## 📌 Overview
+AI-Powered News Verifier is a web-based platform that helps users distinguish real news from misinformation. It features a **Next.js frontend** for a smooth user experience, a **Flask backend** for processing requests, and an **AI Agent** that scans the web for real news and performs **similarity search** to verify sources.
 
-### Step 1: Fork this Repository
-1. Click the **Fork** button at the top-right corner of this page
-2. This creates a copy of this repository in your GitHub account
+## Team Members:
+- Abhivyakt Bhati
+- Armaan Raj Thakur
+- Fardeen Khan
+- Pushkar Singh
 
-### Step 2: Clone Your Fork
+## 🚀 Features
+### ✅ **Next.js Frontend**
+- Modern, responsive UI for seamless user experience.
+- Uses **Tailwind CSS** for styling.
+- Interactive search and result visualization.
+
+### 🛠 **Flask Backend**
+- API built with **Flask** to handle requests.
+- Uses **natural language processing (NLP)** to compare news.
+- Handles similarity search using **vector embeddings**.
+
+### 🔍 **Similarity Search**
+- Extracts key features from input text.
+- Compares against a database of reliable news sources.
+- Uses **cosine similarity / semantic search** for accuracy.
+
+### 🤖 **AI Agent (MVP)**
+- Searches the web for **real news** related to a given topic.
+- Fetches articles from trusted sources.
+- Compares retrieved articles with input text to find factual accuracy.
+- Provides users with a reliability score and citations.
+
+## 🏗 Tech Stack
+- **Frontend**: Next.js, React, Tailwind CSS
+- **Backend**: Flask, Python
+- **AI & NLP**: OpenAI/Gemini API, Sentence Transformers
+
+## 📦 Setup
+### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/YOUR-USERNAME/CodeUrja1.0.git
-cd CodeUrja1.0
+git clone https://github.com/yourusername/news-verifier.git
+cd news-verifier
 ```
 
-### Step 3: Create Your Project Directory
+### 2️⃣ Install dependencies
+#### Frontend
 ```bash
-mkdir team-YOUR-TEAM-NAME
-cd team-YOUR-TEAM-NAME
+cd frontend
+npm install
+npm run dev
 ```
 
-### Step 4: Add Your Code
-- Develop your project within your team directory
-- Make sure to include a README.md in your team directory explaining your project
-
-### Step 5: Commit and Push Changes
+#### Backend
 ```bash
-git add .
-git commit -m "Add project: [YOUR PROJECT NAME]"
-git push origin main
+cd backend
+pip install -r requirements.txt
+python app.py
 ```
 
-### Step 6: Submit Your Work
-- Create a Pull Request from your fork to this original repository
-- Title your PR: "Team [YOUR TEAM NAME]: [PROJECT NAME]"
-- Include a brief description of your project in the PR description
+### 3️⃣ Run the project
+- Open `http://localhost:3000` for the frontend.
+- Flask API runs on `http://localhost:5000`.
 
-## 📂 Repository Structure
-Please follow this structure for your submissions:
-```
-CodeUrja1.0/
-├── team-name-1/
-│   ├── README.md
-│   ├── src/
-│   └── ... (other project files)
-├── team-name-2/
-│   ├── README.md
-│   ├── src/
-│   └── ... (other project files)
-└── ... (other team directories)
-```
+## 📌 Future Improvements
+- **Improved AI Model** for better news verification.
+- **User Authentication** to save verification history.
+- **Browser Extension** for on-the-go news fact-checking.
 
-## ⚙️ Requirements
-- Your team directory must include a README.md with:
-  - Project name and description
-  - Team member names
-  - Technologies used
-  - Setup instructions
-  - Screenshots/demo (if applicable)
-- Keep your code clean and well-documented
-- Don't modify other teams' directories
-
-## 🌟 Best Practices
-- Use meaningful commit messages
-- Keep large files out of the repository (use .gitignore)
-- Regularly pull from upstream to stay updated
-- Resolve any merge conflicts before submitting your PR
-
-## 🤝 Code of Conduct
-- Respect other participants and their work
-- Give credit to any external resources used
-- Collaborate and learn from each other
-
-## 📝 Questions?
-If you have any questions or issues, please open an issue in this repository or contact the event organizers.
+## 🎯 MVP Goal
+To develop an AI-powered agent that searches the web for real news, analyzes it, and provides **fact-based verification** against user-provided news.
 
 ---
-
-Happy Hacking! ✨
+💡 **Contribute**: PRs are welcome! Reach out if you have ideas to enhance the project. 🚀
