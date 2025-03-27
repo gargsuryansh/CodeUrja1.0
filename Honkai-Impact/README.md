@@ -1,80 +1,36 @@
-# CodeUrja 1.0 Hackathon
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Welcome to the official repository for CodeUrja 1.0 Hackathon! This repository serves as the central hub for all participant submissions.
+## Getting Started
 
-## 🚀 Getting Started: Forking Guide
+First, run the development server:
 
-### Step 1: Fork this Repository
-1. Click the **Fork** button at the top-right corner of this page
-2. This creates a copy of this repository in your GitHub account
-
-### Step 2: Clone Your Fork
 ```bash
-git clone https://github.com/YOUR-USERNAME/CodeUrja1.0.git
-cd CodeUrja1.0
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-### Step 3: Create Your Project Directory
-```bash
-mkdir team-YOUR-TEAM-NAME
-cd team-YOUR-TEAM-NAME
-```
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Step 4: Add Your Code
-- Develop your project within your team directory
-- Make sure to include a README.md in your team directory explaining your project
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-### Step 5: Commit and Push Changes
-```bash
-git add .
-git commit -m "Add project: [YOUR PROJECT NAME]"
-git push origin main
-```
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-### Step 6: Submit Your Work
-- Create a Pull Request from your fork to this original repository
-- Title your PR: "Team [YOUR TEAM NAME]: [PROJECT NAME]"
-- Include a brief description of your project in the PR description
+## Learn More
 
-## 📂 Repository Structure
-Please follow this structure for your submissions:
-```
-CodeUrja1.0/
-├── team-name-1/
-│   ├── README.md
-│   ├── src/
-│   └── ... (other project files)
-├── team-name-2/
-│   ├── README.md
-│   ├── src/
-│   └── ... (other project files)
-└── ... (other team directories)
-```
+To learn more about Next.js, take a look at the following resources:
 
-## ⚙️ Requirements
-- Your team directory must include a README.md with:
-  - Project name and description
-  - Team member names
-  - Technologies used
-  - Setup instructions
-  - Screenshots/demo (if applicable)
-- Keep your code clean and well-documented
-- Don't modify other teams' directories
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## 🌟 Best Practices
-- Use meaningful commit messages
-- Keep large files out of the repository (use .gitignore)
-- Regularly pull from upstream to stay updated
-- Resolve any merge conflicts before submitting your PR
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## 🤝 Code of Conduct
-- Respect other participants and their work
-- Give credit to any external resources used
-- Collaborate and learn from each other
+## Deploy on Vercel
 
-## 📝 Questions?
-If you have any questions or issues, please open an issue in this repository or contact the event organizers.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
----
-
-Happy Hacking! ✨
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
