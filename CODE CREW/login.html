@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileShare - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="auth.js" defer></script>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">FileShare</h1>
+            <div>
+                <a href="index.html"  class="inline-block px-6 py-3 bg-white text-blue-600 font-medium rounded-md shadow-md
+                hover:bg-blue-50 hover:text-blue-700 hover:shadow-lg
+                transition-all duration-200 ease-in-out
+                border border-blue-100  rounded-md">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto mt-10 max-w-md p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-6 text-center">Login to Your Account</h2>
+        <form id="loginForm" class="space-y-4">
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="email" name="email" required 
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="password" name="password" required 
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <button type="submit" 
+        class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-2 px-4 rounded-md
+               shadow-md hover:shadow-lg
+               hover:from-blue-600 hover:to-blue-700
+               transform hover:-translate-y-0.5
+               transition-all duration-300 ease-in-out
+               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+    Login
+</button>
+            </div>
+            <div class="text-center">
+                <p class="text-sm text-gray-600">Don't have an account? <a href="register.html" class="text-blue-600 hover:text-blue-800">Register here</a></p>
+            </div>
+        </form>
+        <div id="loginError" class="mt-4 text-red-600 text-center hidden"></div>
+    </main>
+</body>
+</html>
