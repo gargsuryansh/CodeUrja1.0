@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeWithBuddy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="code2.png" type="image/x-icon">
+
+    <!-- CodeMirror -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.14/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.14/theme/dracula.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.14/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.14/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.14/addon/edit/closebrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.14/addon/edit/matchbrackets.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <li><img src="code2.png" alt="logo"></li>
+            <li><span>CodeWithBuddy</span></li>
+            <li><button><a href="#">Login</a></button></li>
+        </nav>
+    </header>
+
+    <div class="editor-container">
+        <div class="card">
+            <h2>Code Editor</h2>
+            <textarea id="codeEditor"></textarea>
+            <div class="buttons">
+                <button id="runBtn">Run</button>
+                <button id="saveBtn">Save</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Output</h2>
+            <pre id="output"></pre>
+        </div>
+    </div>
+
+    <div class="cards">
+        <div class="room-card">
+            <h2>Join Room</h2>
+            <p>Click below to join an existing coding room.</p>
+            <button onclick="window.location.href='join-room.html'">Join Room</button>
+        </div>
+        <div class="room-card">
+            <h2>Host Room</h2>
+            <p>Click below to create and host a new coding room.</p>
+            <button onclick="window.location.href='host-room.html'">Host Room</button>
+        </div>
+    </div>
+
+    <script>
+        const editor = CodeMirror.fromTextArea(document.getElementById("codeEditor"), {
+            mode: "javascript",
+            theme: "dracula",
+            lineNumbers: true,
+            autoCloseBrackets: true,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            matchBrackets: true
+        });
+
+        document.getElementById("runBtn").addEventListener("click", () => {
+            try {
+                let userCode = editor.getValue();
+                let outputContainer = document.getElementById("output");
+                
+                let consoleLog = [];
+                let oldConsoleLog = console.log;
+                console.log = function(message) {
+                    consoleLog.push(message);
+                    oldConsoleLog.apply(console, arguments);
+                };
+                
+                new Function(userCode)();
+                outputContainer.textContent = consoleLog.join("\n");
+                
+                console.log = oldConsoleLog;
+            } catch (error) {
+                document.getElementById("output").textContent = "Error: " + error;
+            }
+        });
+    </script>
+</body>
+</html>
