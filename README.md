@@ -37,6 +37,15 @@ Additionally, we've built a **browser extension** that allows users to verify ne
 4. **Similarity search determines factual accuracy.**
 5. **Users get a credibility score & source comparisons.**
 
+Demo of our website:
+
+https://github.com/user-attachments/assets/11b22f29-b98a-4e9f-ad7a-6b39f737f56c
+
+Demo of Extension:
+
+https://github.com/user-attachments/assets/97443fa7-be39-4638-92fe-1377dea76186
+
+
 ## MVP Features
 - ✅ **AI-powered web search & similarity matching**
 - ✅ **Next.js frontend for user-friendly interactions**
