@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileShare - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-blue-900 to-blue-600 font-sans">
+  
+    <nav class="fixed w-full top-0 z-50 bg-white/10 backdrop-blur-md py-6">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-2xl font-bold text-white">FileShare</h1>
+            <div class="space-x-3">
+                <a href="login.html" class="px-4 py-2 rounded-md border-2 border-white text-white font-medium 
+                    hover:bg-white hover:text-blue-600 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                    Login
+                </a>
+                <a href="register.html" class="px-4 py-2 rounded-md bg-blue-500 text-white font-medium 
+                    hover:bg-blue-600 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 
+                    border-2 border-blue-500">
+                    Register
+                </a>
+            </div>
+        </div>
+    </nav>
+
+   
+    <main class="container mx-auto px-4 pt-32 pb-10">
+        <section class="text-center mb-16">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Simple, Secure File Sharing</h2>
+            <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+                Upload your files and share them with anyone, anywhere.
+            </p>
+            <a href="register.html" class="inline-block px-8 py-4 bg-white text-blue-600 rounded-md text-xl font-semibold 
+                hover:bg-blue-50 hover:shadow-xl hover:scale-105 transition-all duration-300">
+                Get Started
+            </a>
+        </section>
+
+       
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white/90 p-8 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                <div class="w-full h-48 mb-6 overflow-hidden rounded-lg">
+                    <img src="photo1.avif" alt="Encryption illustration" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-2xl font-bold text-blue-800 mb-3">AES-256 Encryption</h3>
+                <p class="text-gray-700">
+                    All files are encrypted with AES-256 before upload. Decryption happens only on your device.
+                </p>
+            </div>
+            
+            <div class="bg-white/90 p-8 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                <div class="w-full h-48 mb-6 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Secure file sharing illustration" 
+                         class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-2xl font-bold text-blue-800 mb-3">Secure Sharing</h3>
+                <p class="text-gray-700">
+                    Share files with encrypted links. Add password protection for extra security.
+                </p>
+            </div>
+            
+            <div class="bg-white/90 p-8 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                <div class="w-full h-48 overflow-hidden rounded-lg">
+                    <img src="photo2.avif" alt="File management illustration" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-2xl font-bold text-blue-800 mb-3 mt-6">File Management</h3>
+                <p class="text-gray-700 mb-6">
+                    Easily organize, manage, and control access to your files from anywhere.
+                </p>
+            </div>
+        </div>
+    </main>
+
+   
+    <section class="py-16 bg-white/10 backdrop-blur-sm">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-white text-center mb-4">Choose Your Plan</h2>
+            <p class="text-xl text-blue-100 text-center mb-12 max-w-2xl mx-auto">
+                Select the perfect plan for your file sharing needs
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-500 hover:shadow-2xl">
+                    <div class="bg-blue-100 py-6 px-8">
+                        <h3 class="text-2xl font-bold text-blue-800">Basic</h3>
+                        <div class="flex items-end mt-2">
+                            <span class="text-4xl font-bold text-blue-900">$5</span>
+                            <span class="text-gray-600 ml-1 mb-1">/month</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <i class="ri-checkbox-circle-fill text-green-500 text-xl mr-2"></i>
+                                <span>10GB Storage</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="ri-checkbox-circle-fill text-green-500 text-xl mr-2"></i>
+                                <span>Up to 100MB file size</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="ri-checkbox-circle-fill text-green-500 text-xl mr-2"></i>
+                                <span>Basic encryption</span>
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="ri-close-circle-fill text-xl mr-2"></i>
+                                <span>No password protection</span>
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="ri-close-circle-fill text-xl mr-2"></i>
+                                <span>No team sharing</span>
+                            </li>
+                        </ul>
+                        <button class="w-full mt-8 px-6 py-3 bg-blue-100 text-blue-700 rounded-lg font-medium
+                            hover:bg-blue-200 transition-all duration-300 border-2 border-blue-100 hover:border-blue-300">
+                            Get Started
+                        </button>
+                    </div>
+                </div>
+                
+                
+                <div class="bg-white rounded-xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-500 relative">
+                    <div class="absolute top-0 right-0 bg-blue-500 text-white px-4 py-1 text-sm font-bold rounded-bl-lg">
+                        POPULAR
+                    </div>
+                    <div class="bg-blue-600 py-6 px-8">
+                        <h3 class="text-2xl font-bold text-white">Advanced</h3>
+                        <div class="flex items-end mt-2">
+                            <span class="text-4xl font-bold text-white">$15</span>
+                            <span class="text-blue-100 ml-1 mb-1">/month</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <i class="ri-checkbox-circle-fill text-green-500 text-xl mr-2"></i>
+                                <span>100GB Storage</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="ri-checkbox-circle-fill text-green-500 text-xl mr-2"></i>
+                                <span>Up to 2GB file size</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="ri-checkbox-circle-fill text-green-500 text-xl mr-2"></i>
+                                <span>Advanced encryption</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="ri-checkbox-circle-fill text-green-500 text-xl mr-2"></i>
+                                <span>Password protection</span>
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="ri-close-circle-fill text-xl mr-2"></i>
+                                <span>Limited team sharing</span>
+                            </li>
+                        </ul>
+                        <button class="w-full mt-8 px-6 py-3 bg-blue-600 text-white rounded-lg font-medium
+                            hover:bg-blue-700 transition-all duration-300 border-2 border-blue-600 hover:border-blue-700
+                            shadow-lg hover:shadow-xl">
+                            <a href="payment.html">Get Started</a>
+                        </button>
+                    </div>
+                </div>
+                
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-500 hover:shadow-2xl">
+                    <div class="bg-blue-900 py-6 px-8">
+                        <h3 class="text-2xl font-bold text-white">Pro</h3>
+                        <div class="flex items-end mt-2">
+                            <span class="text-4xl font-bold text-white">$30</span>
+                            <span class="text-blue-200 ml-1 mb-1">/month</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <i class="ri-checkbox-circle-fill text-green-500 text-xl mr-2"></i>
+                                <span>1TB Storage</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="ri-checkbox-circle-fill text-green-500 text-xl mr-2"></i>
+                                <span>Up to 10GB file size</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="ri-checkbox-circle-fill text-green-500 text-xl mr-2"></i>
+                                <span>Military-grade encryption</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="ri-checkbox-circle-fill text-green-500 text-xl mr-2"></i>
+                                <span>Password & expiration dates</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="ri-checkbox-circle-fill text-green-500 text-xl mr-2"></i>
+                                <span>Unlimited team sharing</span>
+                            </li>
+                        </ul>
+                        <button class="w-full mt-8 px-6 py-3 bg-blue-900 text-white rounded-lg font-medium
+                            hover:bg-blue-800 transition-all duration-300 border-2 border-blue-900 hover:border-blue-800">
+                            Get Started
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer class="bg-blue-900/50 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-bold mb-4">FileShare</h3>
+                    <p class="text-blue-100">
+                        Secure file sharing made simple. Upload, encrypt, and share your files with confidence.
+                    </p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-white hover:text-blue-200 transition-colors duration-300">
+                            <i class="ri-facebook-fill text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-blue-200 transition-colors duration-300">
+                            <i class="ri-twitter-fill text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-blue-200 transition-colors duration-300">
+                            <i class="ri-linkedin-fill text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-blue-200 transition-colors duration-300">
+                            <i class="ri-github-fill text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-100 hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="#" class="text-blue-100 hover:text-white transition-colors duration-300">Features</a></li>
+                        <li><a href="#" class="text-blue-100 hover:text-white transition-colors duration-300">Pricing</a></li>
+                        <li><a href="#" class="text-blue-100 hover:text-white transition-colors duration-300">About Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-100 hover:text-white transition-colors duration-300">Help Center</a></li>
+                        <li><a href="#" class="text-blue-100 hover:text-white transition-colors duration-300">Contact Us</a></li>
+                        <li><a href="#" class="text-blue-100 hover:text-white transition-colors duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-blue-100 hover:text-white transition-colors duration-300">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            
+            <div class="mt-12 bg-white/10 backdrop-blur-md rounded-xl p-8 max-w-2xl mx-auto transform hover:scale-[1.01] transition-all duration-500">
+                <div class="text-center">
+                    <h4 class="text-2xl font-bold mb-2">Stay Updated</h4>
+                    <p class="text-blue-100 mb-6">Subscribe to our newsletter for the latest updates and features</p>
+                    <form class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <input type="email" placeholder="Your email address" 
+                            class="px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent flex-grow max-w-md">
+                        <button type="submit" 
+                            class="px-6 py-3 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 transition-all duration-300 hover:shadow-lg">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 mt-12 pt-8 text-center text-blue-100">
+                <p>&copy; 2025 FileShare. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
