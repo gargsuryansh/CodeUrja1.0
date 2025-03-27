@@ -1,0 +1,130 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 33% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 210 100% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 222 84% 48%;
+
+    --radius: 0.5rem;
+
+    --editor-bg: 220 26% 14%;
+    --editor-line: 220 26% 20%;
+    --editor-selection: 210 100% 60% / 0.2;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 100% 60%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 212 100% 70%;
+
+    --editor-bg: 220 26% 14%;
+    --editor-line: 220 26% 20%;
+    --editor-selection: 210 100% 60% / 0.2;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  .monaco-editor {
+    @apply rounded-md overflow-hidden transition-all duration-200;
+  }
+
+  .resize-handle {
+    @apply absolute bg-border/50 transition-all duration-200 hover:bg-primary/50 active:bg-primary;
+  }
+
+  .resize-handle-horizontal {
+    @apply resize-handle top-0 right-0 w-1 h-full cursor-col-resize;
+  }
+
+  .resize-handle-vertical {
+    @apply resize-handle bottom-0 left-0 h-1 w-full cursor-row-resize;
+  }
+
+  .editor-container {
+    @apply bg-editor-bg text-foreground rounded-md overflow-hidden shadow-lg transition-all duration-300;
+  }
+
+  .output-container {
+    @apply bg-editor-bg text-foreground rounded-md overflow-hidden shadow-lg transition-all duration-300;
+  }
+
+  .glass-panel {
+    @apply bg-background/80 backdrop-blur-md border border-border/50 shadow-lg;
+  }
+
+  .nav-item {
+    @apply px-3 py-2 rounded-md hover:bg-secondary transition-colors duration-200 hover:text-foreground;
+  }
+
+  .user-avatar {
+    @apply relative flex h-8 w-8 shrink-0 overflow-hidden rounded-full;
+  }
+
+  .user-dot {
+    @apply absolute bottom-0 right-0 h-2 w-2 rounded-full bg-green-500;
+  }
+
+  .code-line-highlight {
+    @apply bg-primary/20 border-l-2 border-primary;
+  }
+}
