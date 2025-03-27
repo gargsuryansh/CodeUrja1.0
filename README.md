@@ -1,80 +1,39 @@
-# CodeUrja 1.0 Hackathon
+BugFixAI - AI-Based Code Debugging Assistant
+🏆 Team Name: RIT
+🚀 Project Name: BugFixAI
+📌 Problem Statement
+AI-Based Code Debugging Assistant: Develop an AI-powered real-time bug detection tool that helps developers find and fix errors in code efficiently.
 
-Welcome to the official repository for CodeUrja 1.0 Hackathon! This repository serves as the central hub for all participant submissions.
+🔍 Overview
+BugFixAI is an AI-driven debugging assistant that provides real-time bug detection, error explanations, and code quality analysis. It aims to enhance developers' efficiency by identifying syntax errors, logical mistakes, and optimization suggestions across multiple programming languages.
 
-## 🚀 Getting Started: Forking Guide
+🎯 Features Implemented
+Real-time Bug Detection: AI-powered detection of syntax and logical errors in code.
 
-### Step 1: Fork this Repository
-1. Click the **Fork** button at the top-right corner of this page
-2. This creates a copy of this repository in your GitHub account
+Code Quality Analysis: Insights into code readability, naming conventions, optimization, consistency, error handling, and comments.
 
-### Step 2: Clone Your Fork
-```bash
-git clone https://github.com/YOUR-USERNAME/CodeUrja1.0.git
-cd CodeUrja1.0
-```
+AI Chatbot Integration: Developers can interact with trained AI chatbots specialized in various programming languages.
 
-### Step 3: Create Your Project Directory
-```bash
-mkdir team-YOUR-TEAM-NAME
-cd team-YOUR-TEAM-NAME
-```
+Visual Representation: Errors and suggestions displayed in a structured, interactive UI.
 
-### Step 4: Add Your Code
-- Develop your project within your team directory
-- Make sure to include a README.md in your team directory explaining your project
+Code Insights: Reports on code efficiency, modularity, and areas of improvement.
 
-### Step 5: Commit and Push Changes
-```bash
-git add .
-git commit -m "Add project: [YOUR PROJECT NAME]"
-git push origin main
-```
+🔮 Future Enhancements
+Automated Fix Suggestions: AI-generated solutions for detected errors.
 
-### Step 6: Submit Your Work
-- Create a Pull Request from your fork to this original repository
-- Title your PR: "Team [YOUR TEAM NAME]: [PROJECT NAME]"
-- Include a brief description of your project in the PR description
+Multi-Language Support: Expansion to support additional programming languages.
 
-## 📂 Repository Structure
-Please follow this structure for your submissions:
-```
-CodeUrja1.0/
-├── team-name-1/
-│   ├── README.md
-│   ├── src/
-│   └── ... (other project files)
-├── team-name-2/
-│   ├── README.md
-│   ├── src/
-│   └── ... (other project files)
-└── ... (other team directories)
-```
+IDE Extension: Integration as a plugin for popular IDEs.
 
-## ⚙️ Requirements
-- Your team directory must include a README.md with:
-  - Project name and description
-  - Team member names
-  - Technologies used
-  - Setup instructions
-  - Screenshots/demo (if applicable)
-- Keep your code clean and well-documented
-- Don't modify other teams' directories
+Collaborative Debugging: Real-time code review and debugging assistance for teams.
 
-## 🌟 Best Practices
-- Use meaningful commit messages
-- Keep large files out of the repository (use .gitignore)
-- Regularly pull from upstream to stay updated
-- Resolve any merge conflicts before submitting your PR
+🛠️ Tech Stack
+Frontend: Next.js, React.js, Tailwind CSS
 
-## 🤝 Code of Conduct
-- Respect other participants and their work
-- Give credit to any external resources used
-- Collaborate and learn from each other
+Backend: Node.js, Express.js
 
-## 📝 Questions?
-If you have any questions or issues, please open an issue in this repository or contact the event organizers.
+AI/ML Model: Python (TensorFlow/PyTorch), LLM-based chatbots
 
----
+Database: MongoDB/PostgreSQL
+Made with ❤️ by Team RIT 🚀
 
-Happy Hacking! ✨
