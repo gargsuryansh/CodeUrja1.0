@@ -29,3 +29,9 @@ A *Multi-Tenant SaaS-Based CMS*, designed as a headless WordPress alternative, a
 ### Database:
 - *MongoDB* - NoSQL database for scalable multi-tenant support.
 
+### features:
+ and ai powerred design assistance using gemenai API,
+headless server
+multi-teneant database creation
+
+
