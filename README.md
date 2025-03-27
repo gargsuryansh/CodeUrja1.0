@@ -1,80 +1,86 @@
-# CodeUrja 1.0 Hackathon
+# Django API Gateway
 
-Welcome to the official repository for CodeUrja 1.0 Hackathon! This repository serves as the central hub for all participant submissions.
+## Overview
+This project is a **self-deployed API Gateway** built using **Django**, designed to manage, route, and secure API requests efficiently. It acts as a single entry point for multiple backend services, handling authentication, rate limiting, logging, and request forwarding.
 
-## 🚀 Getting Started: Forking Guide
+## Features
+- **Request Routing**: Directs incoming requests to appropriate backend services.
+- **Authentication & Authorization**: Supports token-based authentication (JWT/OAuth2).
+- **Rate Limiting**: Prevents excessive API usage to ensure fair resource allocation.
+- **Logging & Monitoring**: Captures request logs for analytics and debugging.
+- **Caching**: Speeds up responses by caching frequently requested data.
+- **Load Balancing**: Distributes traffic efficiently among backend services.
 
-### Step 1: Fork this Repository
-1. Click the **Fork** button at the top-right corner of this page
-2. This creates a copy of this repository in your GitHub account
+## Tech Stack
+- **Framework**: Django (Django REST Framework for API handling)
+- **Database**: PostgreSQL / MySQL (for user authentication & logging)
+- **Authentication**: JWT / OAuth2
+- **Reverse Proxy**: Nginx (optional for deployment)
+- **Caching**: Redis (optional for performance improvement)
 
-### Step 2: Clone Your Fork
-```bash
-git clone https://github.com/YOUR-USERNAME/CodeUrja1.0.git
-cd CodeUrja1.0
-```
+## Installation
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/41chaitanya/CodeUrja1.0-team-Boyssss-self-deployed-api-gateway.git
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd django-api-gateway
+   ```
+3. Create a virtual environment and activate it:
+   ```sh
+   python -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   ```
+4. Install dependencies:
+   ```sh
+   pip install -r requirements.txt
+   ```
+5. Apply database migrations:
+   ```sh
+   python manage.py migrate
+   ```
+6. Create a superuser:
+   ```sh
+   python manage.py createsuperuser
+   ```
+7. Run the server:
+   ```sh
+   python manage.py runserver
+   ```
+8. Access the API Gateway at:
+   ```
+   http://127.0.0.1:8000/
+   ```
 
-### Step 3: Create Your Project Directory
-```bash
-mkdir team-YOUR-TEAM-NAME
-cd team-YOUR-TEAM-NAME
-```
+## Usage
+- **Register API Endpoints**: Configure backend service URLs in Django settings.
+- **Secure APIs**: Use authentication tokens to access protected routes.
+- **Monitor Requests**: View logs in the Django Admin panel or database.
+- **Rate Limit API Calls**: Set up throttling policies to prevent misuse.
 
-### Step 4: Add Your Code
-- Develop your project within your team directory
-- Make sure to include a README.md in your team directory explaining your project
+## Deployment
+To deploy using **Gunicorn & Nginx**:
+1. Install Gunicorn:
+   ```sh
+   pip install gunicorn
+   ```
+2. Run the application:
+   ```sh
+   gunicorn --bind 0.0.0.0:8000 project_name.wsgi
+   ```
+3. Configure **Nginx** as a reverse proxy for better performance.
 
-### Step 5: Commit and Push Changes
-```bash
-git add .
-git commit -m "Add project: [YOUR PROJECT NAME]"
-git push origin main
-```
+## Contributing
+1. Fork the repository
+2. Create a new branch (`feature-branch`)
+3. Commit your changes (`git commit -m "Added a new feature"`)
+4. Push to the branch (`git push origin feature-branch`)
+5. Open a Pull Request
 
-### Step 6: Submit Your Work
-- Create a Pull Request from your fork to this original repository
-- Title your PR: "Team [YOUR TEAM NAME]: [PROJECT NAME]"
-- Include a brief description of your project in the PR description
+## License
+This project is licensed under the MIT License.
 
-## 📂 Repository Structure
-Please follow this structure for your submissions:
-```
-CodeUrja1.0/
-├── team-name-1/
-│   ├── README.md
-│   ├── src/
-│   └── ... (other project files)
-├── team-name-2/
-│   ├── README.md
-│   ├── src/
-│   └── ... (other project files)
-└── ... (other team directories)
-```
+## Contact
+For any queries or contributions, contact **Chaitanya** at [chaitanya4141sharma@gmail.com](mailto:your-email@example.com).
 
-## ⚙️ Requirements
-- Your team directory must include a README.md with:
-  - Project name and description
-  - Team member names
-  - Technologies used
-  - Setup instructions
-  - Screenshots/demo (if applicable)
-- Keep your code clean and well-documented
-- Don't modify other teams' directories
-
-## 🌟 Best Practices
-- Use meaningful commit messages
-- Keep large files out of the repository (use .gitignore)
-- Regularly pull from upstream to stay updated
-- Resolve any merge conflicts before submitting your PR
-
-## 🤝 Code of Conduct
-- Respect other participants and their work
-- Give credit to any external resources used
-- Collaborate and learn from each other
-
-## 📝 Questions?
-If you have any questions or issues, please open an issue in this repository or contact the event organizers.
-
----
-
-Happy Hacking! ✨
