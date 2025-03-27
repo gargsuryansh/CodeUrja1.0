@@ -43,7 +43,7 @@ https://github.com/user-attachments/assets/11b22f29-b98a-4e9f-ad7a-6b39f737f56c
 
 Demo of Extension:
 
-https://github.com/user-attachments/assets/97443fa7-be39-4638-92fe-1377dea76186
+https://github.com/user-attachments/assets/5ff08adc-f1cb-414a-be72-12f743471380
 
 
 ## MVP Features
