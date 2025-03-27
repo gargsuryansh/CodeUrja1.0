@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+
+.source-code-pro-quicksand {
+  font-family: "Source Code Pro", monospace;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Ensure the main container (if any) takes the full height */
+#root {
+  height: 100%;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.text-wrapper {
+  width: 100%; /* Adjust width as needed */
+  overflow: hidden; /* Hide overflow to keep the text inside the container */
+  display: flex;
+  justify-content: center; /* Center the text horizontally */
+}
+
+.animated-text {
+  display: inline-block;
+  white-space: nowrap; /* Prevent the text from wrapping */
+  font-size: 2rem; /* Adjust text size as needed */
+  animation: moveText 10s linear infinite; /* Animation for moving the text */
+}
+
+@keyframes moveText {
+  0% {
+    transform: translateX(100%); /* Start from the right */
+  }
+  100% {
+    transform: translateX(-100%); /* Move to the left */
+  }
+}
+
+
+

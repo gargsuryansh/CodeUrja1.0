@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "VeriFact AI",
+  "version": "1.0",
+  "description": "Verifies news reliability using AI and displays trust scores",
+  "icons": {
+    "16": "assets/logo.svg",
+    "48": "assets/logo.svg",
+    "128": "assets/logo.svg"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "assets/logo.svg"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://371f-183-182-87-182.ngrok-free.app/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "type": "module"
+    }
+  ]
+}
