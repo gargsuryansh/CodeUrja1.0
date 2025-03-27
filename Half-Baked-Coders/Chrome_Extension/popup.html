@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VeriFact AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="assets/logo.svg" alt="VeriFact AI Logo">
+        <h1>VeriFact AI</h1>
+      </div>
+      <p class="tagline">AI-powered news reliability verification</p>
+    </header>
+
+    <!-- Loader shown during analysis -->
+    <div class="loader-container" id="loader">
+      <div class="spinner"></div>
+      <p>Analyzing article reliability...</p>
+    </div>
+
+    <!-- Initial state when we detect a news site -->
+    <div class="initial-state" id="initialState">
+      <p>News article detected!</p>
+      <p class="article-title" id="articleTitle">Article title will appear here</p>
+      <button id="analyzeBtn" class="analyze-btn">
+        <i class="fas fa-magnifying-glass"></i> Analyze Reliability
+      </button>
+    </div>
+
+    <!-- Results section shown after analysis -->
+    <div class="results-container" id="resultsContainer">
+      <div class="score-container">
+        <div class="gauge-container">
+          <svg id="gaugeChart" width="150" height="85" viewBox="0 0 150 85"></svg>
+          <div class="score-value" id="scoreValue">--</div>
+        </div>
+        <p class="reliability-label" id="reliabilityLabel">Reliability Score</p>
+      </div>
+      
+      <div class="verdict-container">
+        <h2 id="verdictTitle">Awaiting Analysis</h2>
+        <p id="verdictDescription">Click analyze to check this article's reliability.</p>
+      </div>
+
+      <div class="details-container details-section">
+        <div class="detail-item">
+          <i class="fas fa-newspaper"></i>
+          <span id="sourceName">Source verification</span>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-magnifying-glass-chart"></i>
+          <span id="factChecking">Fact checking</span>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-copy"></i>
+          <span id="contentAnalysis">Content analysis</span>
+        </div>
+        
+        <!-- Website Button will be added dynamically here -->
+      </div>
+      
+      <div class="button-container" style="margin-top: 20px;">
+        <button id="resetBtn" class="secondary-button">
+          <i class="fas fa-rotate"></i> Reset Analysis
+        </button>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="error-container" id="errorContainer">
+      <i class="fas fa-triangle-exclamation"></i>
+      <h2>Analysis Error</h2>
+      <p id="errorMessage">Unable to analyze this article. Please try again later.</p>
+      <button id="retryBtn" class="retry-btn">
+        <i class="fas fa-rotate"></i> Retry
+      </button>
+    </div>
+
+    <!-- Not a news site state -->
+    <div class="not-news-container" id="notNewsContainer">
+      <i class="fas fa-info-circle"></i>
+      <h2>Not a Monitored News Site</h2>
+      <p>This extension verifies articles from known news domains.</p>
+      <p>Visit a news website to use VeriFact AI.</p>
+    </div>
+
+    <footer>
+
+    </footer>
+  </div>
+  <script src="popup.js" type="module"></script>
+</body>
+</html>

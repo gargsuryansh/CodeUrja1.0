@@ -1,80 +1,67 @@
-# CodeUrja 1.0 Hackathon
+# Half Baked Coders
 
-Welcome to the official repository for CodeUrja 1.0 Hackathon! This repository serves as the central hub for all participant submissions.
+# AI-Powered News Verification System
 
-## 🚀 Getting Started: Forking Guide
+## Overview
+VeriFact-AI is a **Next.js + Flask**-based platform that verifies news authenticity using AI-powered **similarity search** and **web scraping**. The core feature is an **AI Agent** that searches the web for credible sources and compares them to the article in question.
 
-### Step 1: Fork this Repository
-1. Click the **Fork** button at the top-right corner of this page
-2. This creates a copy of this repository in your GitHub account
+Additionally, we've built a **browser extension** that allows users to verify news articles directly from any source they are reading. For images, we implemented multiple OCR models such as EasyOCR, TesseractOCR and our own Tensorflow model, but the best was Mistral OCR. Though its API is payment only, we decided to implement Gemini's 2.0 Flash model for very low cost as well as high efficiency,
 
-### Step 2: Clone Your Fork
-```bash
-git clone https://github.com/YOUR-USERNAME/CodeUrja1.0.git
-cd CodeUrja1.0
-```
+## Tech Stack
+### Frontend (Next.js)
+- Built with **Next.js** (React framework) for fast rendering and SEO benefits.
+- Uses **Tailwind CSS** for styling.
+- Integrates with the backend for real-time verification of news articles.
+- Displays news credibility scores and source comparisons.
 
-### Step 3: Create Your Project Directory
-```bash
-mkdir team-YOUR-TEAM-NAME
-cd team-YOUR-TEAM-NAME
-```
+### Backend (Flask)
+- **Flask** serves as the backend API.
+- Scrapes and processes real-time news from **credible sources**.
+- Uses **vector-based similarity search** to compare news articles.
+- Leverages **AI-based NLP models** for content analysis.
 
-### Step 4: Add Your Code
-- Develop your project within your team directory
-- Make sure to include a README.md in your team directory explaining your project
+### AI Agent & Similarity Search
+- AI Agent fetches and evaluates multiple news sources to cross-check facts.
+- Uses **embedding models** (e.g., OpenAI, Sentence Transformers) for similarity detection.
+- Filters out misinformation and ranks sources based on credibility.
 
-### Step 5: Commit and Push Changes
-```bash
-git add .
-git commit -m "Add project: [YOUR PROJECT NAME]"
-git push origin main
-```
+### Browser Extension
+- The **Chrome Extension** allows users to verify news instantly.
+- It scans the current article and provides real-time authenticity predictions.
+- Uses the same AI model as the platform for consistency.
 
-### Step 6: Submit Your Work
-- Create a Pull Request from your fork to this original repository
-- Title your PR: "Team [YOUR TEAM NAME]: [PROJECT NAME]"
-- Include a brief description of your project in the PR description
 
-## 📂 Repository Structure
-Please follow this structure for your submissions:
-```
-CodeUrja1.0/
-├── team-name-1/
-│   ├── README.md
-│   ├── src/
-│   └── ... (other project files)
-├── team-name-2/
-│   ├── README.md
-│   ├── src/
-│   └── ... (other project files)
-└── ... (other team directories)
-```
+## How It Works
+1. **User inputs or visits a news article.**
+2. **Backend scrapes related news sources.**
+3. **AI Agent analyzes and compares the information.**
+4. **Similarity search determines factual accuracy.**
+5. **Users get a credibility score & source comparisons.**
 
-## ⚙️ Requirements
-- Your team directory must include a README.md with:
-  - Project name and description
-  - Team member names
-  - Technologies used
-  - Setup instructions
-  - Screenshots/demo (if applicable)
-- Keep your code clean and well-documented
-- Don't modify other teams' directories
+Demo of our website:
 
-## 🌟 Best Practices
-- Use meaningful commit messages
-- Keep large files out of the repository (use .gitignore)
-- Regularly pull from upstream to stay updated
-- Resolve any merge conflicts before submitting your PR
+https://github.com/user-attachments/assets/11b22f29-b98a-4e9f-ad7a-6b39f737f56c
 
-## 🤝 Code of Conduct
-- Respect other participants and their work
-- Give credit to any external resources used
-- Collaborate and learn from each other
+Demo of Extension:
 
-## 📝 Questions?
-If you have any questions or issues, please open an issue in this repository or contact the event organizers.
+https://github.com/user-attachments/assets/5ff08adc-f1cb-414a-be72-12f743471380
+
+
+## MVP Features
+- ✅ **AI-powered web search & similarity matching**
+- ✅ **Next.js frontend for user-friendly interactions**
+- ✅ **Flask API for data processing & analysis**
+- ✅ **Real-time news credibility scoring**
+- ✅ **Chrome extension for instant verification**
+
+## Future Enhancements
+- 🔄 Improving AI model accuracy & credibility scoring.
+- 📊 Adding a dashboard for tracking misinformation trends.
+- 🌍 Expanding to multiple languages for broader accessibility.
+
+## Team
+🚀 **Half Baked Coders** 
 
 ---
+Let us know if you have any feedback or ideas to improve the project! 🚀
 
-Happy Hacking! ✨
