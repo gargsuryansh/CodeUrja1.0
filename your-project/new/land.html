@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Land Records Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c5f2d;
+            --secondary-color: #97bc62;
+            --accent-color: #2c5f2d;
+            --light-color: #f5f7f3;
+            --dark-color: #1a1a1a;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 0;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-email {
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .main-title {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+
+        .search-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-color);
+        }
+
+        .search-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .search-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-btn:hover {
+            background-color: #1e4a1e;
+        }
+
+        .records-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+
+        .records-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .record-card {
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .record-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .record-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+        }
+
+        .record-id {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .record-title {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        .record-body {
+            padding: 15px;
+        }
+
+        .record-detail {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            min-width: 120px;
+        }
+
+        .record-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .action-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .view-btn {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .view-btn:hover {
+            background-color: #7fa955;
+        }
+
+        .download-btn {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .download-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .documents-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .doc-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .doc-tab {
+            padding: 10px 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+        }
+
+        .doc-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .doc-content {
+            display: none;
+        }
+
+        .doc-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .upload-area {
+            border: 2px dashed #ddd;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(151, 188, 98, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .document-list {
+            list-style: none;
+        }
+
+        .document-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .doc-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .doc-icon {
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+
+        .doc-name {
+            font-weight: 600;
+        }
+
+        .doc-meta {
+            font-size: 12px;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .doc-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .verify-badge {
+            background-color: #e1f5fe;
+            color: #0288d1;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .hash-value {
+            font-family: monospace;
+            font-size: 12px;
+            color: #666;
+            word-break: break-all;
+            margin-top: 10px;
+            background: #f9f9f9;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .document-viewer {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #eee;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .user-info {
+                margin-top: 15px;
+            }
+            
+            .search-tabs, .doc-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab-btn, .doc-tab {
+                flex: 1 0 auto;
+                text-align: center;
+            }
+            
+            .records-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .record-actions, .doc-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .detail-label {
+                min-width: 100px;
+            }
+            
+            .doc-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-map-marked-alt"></i>
+                Land Records System
+            </div>
+            <div class="user-info">
+                <div class="user-email">officer@landrecords.gov.in</div>
+                <div class="verify-badge">
+                    <i class="fas fa-shield-alt"></i> Verified Officer
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="main-title">Land Records Management</h1>
+        
+        <!-- Search Section -->
+        <div class="search-section">
+            <h2 class="section-title">Search Land Records</h2>
+            
+            <div class="search-tabs">
+                <button class="tab-btn active" data-tab="owner">By Owner Name</button>
+                <button class="tab-btn" data-tab="aadhaar">By Aadhaar Number</button>
+                <button class="tab-btn" data-tab="location">By Location</button>
+            </div>
+            
+            <div class="tab-content active" id="owner-tab">
+                <div class="form-group">
+                    <label for="owner-name">Owner Name</label>
+                    <input type="text" id="owner-name" placeholder="Enter owner's full name">
+                </div>
+                <div class="form-group">
+                    <label for="owner-father">Father's/Husband's Name</label>
+                    <input type="text" id="owner-father" placeholder="Enter father's/husband's name">
+                </div>
+                <button class="search-btn">
+                    <i class="fas fa-search"></i> Search Records
+                </button>
+            </div>
+            
+            <div class="tab-content" id="aadhaar-tab">
+                <div class="form-group">
+                    <label for="aadhaar-number">Aadhaar Number</label>
+                    <input type="text" id="aadhaar-number" placeholder="Enter 12-digit Aadhaar number">
+                </div>
+                <button class="search-btn">
+                    <i class="fas fa-search"></i> Search Records
+                </button>
+            </div>
+            
+            <div class="tab-content" id="location-tab">
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <select id="state">
+                        <option value="">Select State</option>
+                        <option value="MH">Maharashtra</option>
+                        <option value="UP">Uttar Pradesh</option>
+                        <option value="KA">Karnataka</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="district">District</label>
+                    <select id="district">
+                        <option value="">Select District</option>
+                        <option value="MUM">Mumbai</option>
+                        <option value="PUN">Pune</option>
+                        <option value="NAS">Nashik</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="village">Village/Taluka</label>
+                    <input type="text" id="village" placeholder="Enter village or taluka name">
+                </div>
+                <button class="search-btn">
+                    <i class="fas fa-search"></i> Search Records
+                </button>
+            </div>
+        </div>
+        
+        <!-- Records Section -->
+        <div class="records-section">
+            <h2 class="section-title">Land Records</h2>
+            
+            <div class="records-grid">
+                <div class="record-card">
+                    <div class="record-header">
+                        <div class="record-id">LR-2023-5A8B2C</div>
+                        <div class="record-title">Survey No. 45/2</div>
+                    </div>
+                    <div class="record-body">
+                        <div class="record-detail">
+                            <span class="detail-label">Owner:</span>
+                            <span>Rajesh Kumar</span>
+                        </div>
+                        <div class="record-detail">
+                            <span class="detail-label">Area:</span>
+                            <span>2.5 acres</span>
+                        </div>
+                        <div class="record-detail">
+                            <span class="detail-label">Location:</span>
+                            <span>Village: Palashi, Dist: Pune</span>
+                        </div>
+                        <div class="record-detail">
+                            <span class="detail-label">Status:</span>
+                            <span>Registered</span>
+                        </div>
+                        <div class="record-actions">
+                            <button class="action-btn view-btn" data-record="1">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                            <button class="action-btn download-btn">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="record-card">
+                    <div class="record-header">
+                        <div class="record-id">LR-2022-3D4E5F</div>
+                        <div class="record-title">Survey No. 12/7</div>
+                    </div>
+                    <div class="record-body">
+                        <div class="record-detail">
+                            <span class="detail-label">Owner:</span>
+                            <span>Sunita Patil</span>
+                        </div>
+                        <div class="record-detail">
+                            <span class="detail-label">Area:</span>
+                            <span>1.75 acres</span>
+                        </div>
+                        <div class="record-detail">
+                            <span class="detail-label">Location:</span>
+                            <span>Village: Wai, Dist: Satara</span>
+                        </div>
+                        <div class="record-detail">
+                            <span class="detail-label">Status:</span>
+                            <span>Registered</span>
+                        </div>
+                        <div class="record-actions">
+                            <button class="action-btn view-btn" data-record="2">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                            <button class="action-btn download-btn">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Documents Section -->
+        <div class="documents-section">
+            <h2 class="section-title">Land Documents</h2>
+            
+            <div class="doc-tabs">
+                <button class="doc-tab active" data-doc="sale">Sale Deed</button>
+                <button class="doc-tab" data-doc="domicile">Domicile Certificate</button>
+                <button class="doc-tab" data-doc="aadhaar">Aadhaar Card</button>
+                <button class="doc-tab" data-doc="mutation">Mutation Certificate</button>
+                <button class="doc-tab" data-doc="loan">Loan Documents</button>
+            </div>
+            
+            <div class="doc-content active" id="sale-doc">
+                <div class="upload-area" id="sale-upload">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <p>Drag & drop Sale Deed document here or click to browse</p>
+                    <input type="file" id="sale-file" style="display: none;" accept=".pdf,.jpg,.jpeg,.png">
+                </div>
+                
+                <ul class="document-list">
+                    <li class="document-item">
+                        <div class="doc-info">
+                            <div class="doc-icon">
+                                <i class="fas fa-file-contract"></i>
+                            </div>
+                            <div>
+                                <div class="doc-name">Sale_Deed_2023.pdf</div>
+                                <div class="doc-meta">Uploaded: 15 Jun 2023 | Size: 2.4 MB</div>
+                                <div class="hash-value">SHA-256: a1b2c3d4e5f6...7890</div>
+                            </div>
+                        </div>
+                        <div class="doc-actions">
+                            <button class="action-btn view-btn">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="action-btn download-btn">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                            <div class="verify-badge">
+                                <i class="fas fa-check-circle"></i> Verified
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="doc-content" id="domicile-doc">
+                <div class="upload-area" id="domicile-upload">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <p>Drag & drop Domicile Certificate here or click to browse</p>
+                    <input type="file" id="domicile-file" style="display: none;" accept=".pdf,.jpg,.jpeg,.png">
+                </div>
+                
+                <ul class="document-list">
+                    <li class="document-item">
+                        <div class="doc-info">
+                            <div class="doc-icon">
+                                <i class="fas fa-file-certificate"></i>
+                            </div>
+                            <div>
+                                <div class="doc-name">Domicile_Certificate.pdf</div>
+                                <div class="doc-meta">Uploaded: 10 May 2023 | Size: 1.8 MB</div>
+                                <div class="hash-value">SHA-256: b2c3d4e5f6g7...8910</div>
+                            </div>
+                        </div>
+                        <div class="doc-actions">
+                            <button class="action-btn view-btn">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="action-btn download-btn">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                            <div class="verify-badge">
+                                <i class="fas fa-check-circle"></i> Verified
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="doc-content" id="aadhaar-doc">
+                <div class="upload-area" id="aadhaar-upload">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <p>Drag & drop Aadhaar Card here or click to browse</p>
+                    <input type="file" id="aadhaar-file" style="display: none;" accept=".pdf,.jpg,.jpeg,.png">
+                </div>
+                
+                <ul class="document-list">
+                    <li class="document-item">
+                        <div class="doc-info">
+                            <div class="doc-icon">
+                                <i class="fas fa-id-card"></i>
+                            </div>
+                            <div>
+                                <div class="doc-name">Aadhaar_Card_Front.jpg</div>
+                                <div class="doc-meta">Uploaded: 5 Apr 2023 | Size: 0.8 MB</div>
+                                <div class="hash-value">SHA-256: c3d4e5f6g7h8...9101</div>
+                            </div>
+                        </div>
+                        <div class="doc-actions">
+                            <button class="action-btn view-btn">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="action-btn download-btn">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                            <div class="verify-badge">
+                                <i class="fas fa-check-circle"></i> Verified
+                            </div>
+                        </div>
+                    </li>
+                    <li class="document-item">
+                        <div class="doc-info">
+                            <div class="doc-icon">
+                                <i class="fas fa-id-card"></i>
+                            </div>
+                            <div>
+                                <div class="doc-name">Aadhaar_Card_Back.jpg</div>
+                                <div class="doc-meta">Uploaded: 5 Apr 2023 | Size: 0.9 MB</div>
+                                <div class="hash-value">SHA-256: d4e5f6g7h8i9...1011</div>
+                            </div>
+                        </div>
+                        <div class="doc-actions">
+                            <button class="action-btn view-btn">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="action-btn download-btn">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                            <div class="verify-badge">
+                                <i class="fas fa-check-circle"></i> Verified
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="doc-content" id="mutation-doc">
+                <div class="upload-area" id="mutation-upload">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <p>Drag & drop Mutation Certificate here or click to browse</p>
+                    <input type="file" id="mutation-file" style="display: none;" accept=".pdf,.jpg,.jpeg,.png">
+                </div>
+                
+                <p>No mutation certificate uploaded yet.</p>
+            </div>
+            
+            <div class="doc-content" id="loan-doc">
+                <div class="upload-area" id="loan-upload">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <p>Drag & drop Loan Documents here or click to browse</p>
+                    <input type="file" id="loan-file" style="display: none;" accept=".pdf,.jpg,.jpeg,.png" multiple>
+                </div>
+                
+                <ul class="document-list">
+                    <li class="document-item">
+                        <div class="doc-info">
+                            <div class="doc-icon">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                            </div>
+                            <div>
+                                <div class="doc-name">Loan_Agreement.pdf</div>
+                                <div class="doc-meta">Uploaded: 20 Mar 2023 | Size: 3.2 MB</div>
+                                <div class="hash-value">SHA-256: e5f6g7h8i9j0...1112</div>
+                            </div>
+                        </div>
+                        <div class="doc-actions">
+                            <button class="action-btn view-btn">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="action-btn download-btn">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                            <div class="verify-badge">
+                                <i class="fas fa-check-circle"></i> Verified
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Record Details Modal -->
+    <div class="modal" id="recordModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Land Record Details</h2>
+            <div id="recordDetailsContent">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Document Viewer Modal -->
+    <div class="modal" id="docModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="docModalTitle">Document Viewer</h2>
+            <div class="document-viewer" id="documentViewer">
+                <!-- PDF or image will be displayed here -->
+                <p style="text-align: center; margin-top: 50px;">Document preview will be shown here</p>
+            </div>
+            <div class="hash-value" style="margin-top: 20px;">
+                SHA-256: <span id="docHashValue">a1b2c3d4e5f6...7890</span>
+            </div>
+            <div style="margin-top: 20px; text-align: center;">
+                <button class="action-btn download-btn" style="display: inline-flex;">
+                    <i class="fas fa-download"></i> Download Verified Copy
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs
+                    tabBtns.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    document.getElementById(${tabId}-tab).classList.add('active');
+                });
+            });
+            
+            // Document tab functionality
+            const docTabs = document.querySelectorAll('.doc-tab');
+            const docContents = document.querySelectorAll('.doc-content');
+            
+            docTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const docId = this.getAttribute('data-doc');
+                    
+                    // Remove active class from all tabs
+                    docTabs.forEach(tab => tab.classList.remove('active'));
+                    docContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    document.getElementById(${docId}-doc).classList.add('active');
+                });
+            });
+            
+            // File upload functionality
+            const uploadAreas = document.querySelectorAll('.upload-area');
+            
+            uploadAreas.forEach(area => {
+                const inputId = area.id.replace('-upload', '-file');
+                const fileInput = document.getElementById(inputId);
+                
+                area.addEventListener('click', () => fileInput.click());
+                
+                area.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    area.style.borderColor = var(--primary-color);
+                    area.style.backgroundColor = 'rgba(151, 188, 98, 0.1)';
+                });
+                
+                area.addEventListener('dragleave', () => {
+                    area.style.borderColor = '#ddd';
+                    area.style.backgroundColor = '';
+                });
+                
+                area.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    area.style.borderColor = '#ddd';
+                    area.style.backgroundColor = '';
+                    
+                    if (e.dataTransfer.files.length) {
+                        fileInput.files = e.dataTransfer.files;
+                        handleFileUpload(fileInput);
+                    }
+                });
+                
+                fileInput.addEventListener('change', () => handleFileUpload(fileInput));
+            });
+            
+            function handleFileUpload(input) {
+                if (input.files && input.files.length > 0) {
+                    // In a real app, you would upload to server and calculate hash
+                    const fileName = input.files[0].name;
+                    const fileSize = (input.files[0].size / (1024 * 1024)).toFixed(1) + ' MB';
+                    const uploadDate = new Date().toLocaleDateString('en-GB');
+                    
+                    // Generate a random hash for demo purposes
+                    const hash = generateRandomHash();
+                    
+                    // Get the document list for this type
+                    const docType = input.id.split('-')[0];
+                    const docList = document.querySelector(#${docType}-doc .document-list);
+                    
+                    // Create new document item
+                    const docItem = document.createElement('li');
+                    docItem.className = 'document-item';
+                    docItem.innerHTML = `
+                        <div class="doc-info">
+                            <div class="doc-icon">
+                                <i class="fas fa-file-${getFileIcon(docType)}"></i>
+                            </div>
+                            <div>
+                                <div class="doc-name">${fileName}</div>
+                                <div class="doc-meta">Uploaded: ${uploadDate} | Size: ${fileSize}</div>
+                                <div class="hash-value">SHA-256: ${hash}</div>
+                            </div>
+                        </div>
+                        <div class="doc-actions">
+                            <button class="action-btn view-btn">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="action-btn download-btn">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                            <div class="verify-badge">
+                                <i class="fas fa-check-circle"></i> Verified
+                            </div>
+                        </div>
+                    `;
+                    
+                    // If no documents yet, remove the "no documents" message
+                    if (docList.children.length === 1 && docList.children[0].tagName === 'P') {
+                        docList.innerHTML = '';
+                    }
+                    
+                    docList.appendChild(docItem);
+                    
+                    // Add event listeners to the new buttons
+                    docItem.querySelector('.view-btn').addEventListener('click', () => viewDocument(fileName, hash));
+                    docItem.querySelector('.download-btn').addEventListener('click', () => downloadDocument(fileName));
+                    
+                    alert('Document uploaded successfully!\nHash generated for tamper-proof verification.');
+                }
+            }
+            
+            function getFileIcon(docType) {
+                const icons = {
+                    'sale': 'contract',
+                    'domicile': 'certificate',
+                    'aadhaar': 'id-card',
+                    'mutation': 'signature',
+                    'loan': 'invoice-dollar'
+                };
+                return icons[docType] || 'alt';
+            }
+            
+            function generateRandomHash() {
+                const chars = 'abcdef0123456789';
+                let result = '';
+                for (let i = 0; i < 64; i++) {
+                    result += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return result;
+            }
+            
+            // Record view functionality
+            const viewBtns = document.querySelectorAll('.view-btn[data-record]');
+            const recordModal = document.getElementById('recordModal');
+            const closeModal = document.querySelectorAll('.close-modal');
+            
+            viewBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const recordId = this.getAttribute('data-record');
+                    showRecordDetails(recordId);
+                });
+            });
+            
+            function showRecordDetails(recordId) {
+                // In a real app, you would fetch this data from server
+                const recordData = {
+                    '1': {
+                        id: 'LR-2023-5A8B2C',
+                        surveyNo: '45/2',
+                        owner: 'Rajesh Kumar',
+                        fatherName: 'Vijay Kumar',
+                        area: '2.5 acres',
+                        location: 'Village: Palashi, Dist: Pune',
+                        status: 'Registered',
+                        registrationDate: '15 Jun 2023',
+                        lastTransaction: 'Sale deed registered on 10 Jun 2023',
+                        hash: 'a1b2c3d4e5f6...7890'
+                    },
+                    '2': {
+                        id: 'LR-2022-3D4E5F',
+                        surveyNo: '12/7',
+                        owner: 'Sunita Patil',
+                        fatherName: 'Ramesh Patil',
+                        area: '1.75 acres',
+                        location: 'Village: Wai, Dist: Satara',
+                        status: 'Registered',
+                        registrationDate: '20 Mar 2022',
+                        lastTransaction: 'Mutation recorded on 5 May 2023',
+                        hash: 'b2c3d4e5f6g7...8910'
+                    }
+                };
+                
+                const record = recordData[recordId];
+                const content = document.getElementById('recordDetailsContent');
+                
+                content.innerHTML = `
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                        <div>
+                            <h3 style="margin-bottom: 15px; color: var(--primary-color);">Basic Information</h3>
+                            <div class="record-detail">
+                                <span class="detail-label">Record ID:</span>
+                                <span>${record.id}</span>
+                            </div>
+                            <div class="record-detail">
+                                <span class="detail-label">Survey No.:</span>
+                                <span>${record.surveyNo}</span>
+                            </div>
+                            <div class="record-detail">
+                                <span class="detail-label">Owner:</span>
+                                <span>${record.owner}</span>
+                            </div>
+                            <div class="record-detail">
+                                <span class="detail-label">Father's Name:</span>
+                                <span>${record.fatherName}</span>
+                            </div>
+                            <div class="record-detail">
+                                <span class="detail-label">Area:</span>
+                                <span>${record.area}</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 style="margin-bottom: 15px; color: var(--primary-color);">Location Details</h3>
+                            <div class="record-detail">
+                                <span class="detail-label">Location:</span>
+                                <span>${record.location}</span>
+                            </div>
+                            <div class="record-detail">
+                                <span class="detail-label">Status:</span>
+                                <span>${record.status}</span>
+                            </div>
+                            <div class="record-detail">
+                                <span class="detail-label">Registration Date:</span>
+                                <span>${record.registrationDate}</span>
+                            </div>
+                            <div class="record-detail">
+                                <span class="detail-label">Last Transaction:</span>
+                                <span>${record.lastTransaction}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <h3 style="margin-bottom: 15px; color: var(--primary-color);">Verification Hash</h3>
+                        <div class="hash-value">SHA-256: ${record.hash}</div>
+                        <p style="margin-top: 10px; font-size: 14px; color: #666;">
+                            This hash value ensures the integrity of this land record. Any tampering with the record will change this hash value.
+                        </p>
+                    </div>
+                `;
+                
+                recordModal.style.display = 'flex';
+            }
+            
+            // Document view functionality
+            const docViewBtns = document.querySelectorAll('.document-list .view-btn');
+            const docModal = document.getElementById('docModal');
+            
+            docViewBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const docName = this.closest('.document-item').querySelector('.doc-name').textContent;
+                    const hashValue = this.closest('.document-item').querySelector('.hash-value').textContent;
+                    viewDocument(docName, hashValue);
+                });
+            });
+            
+            function viewDocument(docName, hashValue) {
+                document.getElementById('docModalTitle').textContent = docName;
+                document.getElementById('docHashValue').textContent = hashValue.split(': ')[1];
+                
+                // In a real app, you would display the actual document
+                const viewer = document.getElementById('documentViewer');
+                viewer.innerHTML = `
+                    <div style="text-align: center; padding: 50px 20px;">
+                        <i class="fas fa-file-alt" style="font-size: 48px; color: var(--primary-color); margin-bottom: 20px;"></i>
+                        <h3>${docName}</h3>
+                        <p style="margin-top: 10px;">Document preview would be displayed here in a real application</p>
+                    </div>
+                `;
+                
+                docModal.style.display = 'flex';
+            }
+            
+            // Download functionality
+            const downloadBtns = document.querySelectorAll('.download-btn');
+            
+            downloadBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    let docName;
+                    if (this.closest('.document-item')) {
+                        docName = this.closest('.document-item').querySelector('.doc-name').textContent;
+                    } else {
+                        // For record download
+                        docName = this.closest('.record-card').querySelector('.record-title').textContent + '.pdf';
+                    }
+                    downloadDocument(docName);
+                });
+            });
+            
+            function downloadDocument(docName) {
+                // In a real app, this would download the actual file
+                alert(In a real application, this would download: ${docName}\nThe downloaded file would include the verification hash in its metadata.);
+            }
+            
+            // Close modals
+            closeModal.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.closest('.modal').style.display = 'none';
+                });
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target.classList.contains('modal')) {
+                    e.target.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

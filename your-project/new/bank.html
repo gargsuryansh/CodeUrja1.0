@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank & Loan Verification | Secure Mortgage Processing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c5f2d;
+            --secondary-color: #97bc62;
+            --accent-color: #e74c3c;
+            --light-color: #f5f7f3;
+            --dark-color: #1a1a1a;
+            --text-color: #333;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 0;
+            box-shadow: var(--box-shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .verification-hero {
+            background: linear-gradient(rgba(44, 95, 45, 0.9), rgba(44, 95, 45, 0.8)), url('bank-bg.jpg') no-repeat center center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .verification-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .verification-hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Verification Process Section */
+        .verification-process {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 15px auto;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .process-step h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        /* Verification Form Section */
+        .verification-form-section {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .form-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 30px;
+        }
+
+        .form-tab {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+        }
+
+        .form-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .form-content {
+            display: none;
+        }
+
+        .form-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .verify-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .verify-btn:hover {
+            background-color: #1e4a1e;
+        }
+
+        /* Security Features Section */
+        .security-features {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        /* Results Section */
+        .results-section {
+            padding: 80px 0;
+            background-color: var(--light-color);
+            text-align: center;
+        }
+
+        .result-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--box-shadow);
+            display: none;
+        }
+
+        .result-card.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .result-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .success-icon {
+            color: var(--primary-color);
+        }
+
+        .warning-icon {
+            color: var(--accent-color);
+        }
+
+        .result-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .result-details {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .detail-row {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            min-width: 200px;
+        }
+
+        .verification-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .verified-badge {
+            background-color: #e1f5fe;
+            color: #0288d1;
+        }
+
+        .fraud-badge {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .hash-value {
+            font-family: monospace;
+            font-size: 14px;
+            color: #666;
+            word-break: break-all;
+            margin-top: 10px;
+            background: #f9f9f9;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        /* Fraud Alerts Section */
+        .fraud-alerts {
+            padding: 80px 0;
+            background-color: #fff8f8;
+        }
+
+        .alert-card {
+            background: white;
+            border-left: 5px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+        }
+
+        .alert-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .verification-hero h1 {
+                font-size: 36px;
+            }
+            
+            .verification-hero p {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .form-tabs {
+                flex-direction: column;
+            }
+            
+            .form-tab {
+                text-align: center;
+                border-bottom: none;
+                border-left: 3px solid transparent;
+            }
+            
+            .form-tab.active {
+                border-bottom: none;
+                border-left-color: var(--primary-color);
+            }
+            
+            .result-card {
+                padding: 25px 15px;
+            }
+            
+            .detail-row {
+                flex-direction: column;
+            }
+            
+            .detail-label {
+                min-width: auto;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-map-marked-alt"></i>
+                    LandSecure
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="bank-verification.html" class="active">Bank Verification</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="verification-hero">
+        <div class="container">
+            <h1>Secure Bank & Loan Verification</h1>
+            <p>Prevent mortgage fraud with our tamper-proof land record verification system</p>
+        </div>
+    </section>
+
+    <!-- Verification Process Section -->
+    <section class="verification-process">
+        <div class="container">
+            <h2 class="section-title">Our Verification Process</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Our 4-step verification process ensures complete security and fraud prevention for all mortgage and loan applications</p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Document Submission</h3>
+                    <p>Bank submits loan application with property details through our secure portal</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Land Record Verification</h3>
+                    <p>System cross-checks property details with official land records database</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Ownership Validation</h3>
+                    <p>Verification of current ownership status and any encumbrances</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Tamper-Proof Report</h3>
+                    <p>Generation of digitally signed verification report with security hash</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Verification Form Section -->
+    <section class="verification-form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2 class="section-title">Initiate Verification</h2>
+                
+                <div class="form-tabs">
+                    <button class="form-tab active" data-tab="bank">Bank Verification</button>
+                    <button class="form-tab" data-tab="loan">Loan Application</button>
+                </div>
+                
+                <div class="form-content active" id="bank-form">
+                    <div class="form-group">
+                        <label for="bank-name">Bank Name</label>
+                        <input type="text" id="bank-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bank-id">Bank ID</label>
+                        <input type="text" id="bank-id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="officer-name">Verifying Officer Name</label>
+                        <input type="text" id="officer-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="officer-email">Officer Email</label>
+                        <input type="email" id="officer-email" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="property-id">Property ID</label>
+                            <input type="text" id="property-id" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="survey-no">Survey Number</label>
+                            <input type="text" id="survey-no" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="verification-purpose">Purpose of Verification</label>
+                        <select id="verification-purpose" required>
+                            <option value="">Select Purpose</option>
+                            <option value="mortgage">Mortgage Application</option>
+                            <option value="loan">Loan Against Property</option>
+                            <option value="refinance">Loan Refinancing</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <button class="verify-btn" id="verifyBankBtn">
+                        <i class="fas fa-shield-alt"></i> Verify Property
+                    </button>
+                </div>
+                
+                <div class="form-content" id="loan-form">
+                    <div class="form-group">
+                        <label for="applicant-name">Applicant Name</label>
+                        <input type="text" id="applicant-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="applicant-aadhaar">Aadhaar Number</label>
+                        <input type="text" id="applicant-aadhaar" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loan-amount">Loan Amount (₹)</label>
+                        <input type="number" id="loan-amount" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="loan-property-id">Property ID</label>
+                            <input type="text" id="loan-property-id" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loan-survey-no">Survey Number</label>
+                            <input type="text" id="loan-survey-no" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="property-docs">Upload Property Documents</label>
+                        <input type="file" id="property-docs" multiple>
+                    </div>
+                    <div class="form-group">
+                        <label for="applicant-consent">
+                            <input type="checkbox" id="applicant-consent" required>
+                            I authorize the bank to verify my property details with land records
+                        </label>
+                    </div>
+                    <button class="verify-btn" id="verifyLoanBtn">
+                        <i class="fas fa-paper-plane"></i> Submit Application
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Features Section -->
+    <section class="security-features">
+        <div class="container">
+            <h2 class="section-title">Fraud Prevention Features</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Our system incorporates multiple layers of security to prevent mortgage fraud</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <h3>Biometric Authentication</h3>
+                    <p>Aadhaar-based biometric verification of property owners to prevent impersonation</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hashtag"></i>
+                    </div>
+                    <h3>Hash Verification</h3>
+                    <p>Every document is hashed and stored with SHA-256 for tamper detection</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Geospatial Validation</h3>
+                    <p>Satellite imagery cross-checking to verify property boundaries</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Ownership History</h3>
+                    <p>Complete chain of ownership with timestamps to detect fraudulent transfers</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Real-time Alerts</h3>
+                    <p>Instant notifications for any suspicious activity or document changes</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-signature"></i>
+                    </div>
+                    <h3>Digital Signatures</h3>
+                    <p>All verification reports are digitally signed for authenticity</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section (Initially hidden) -->
+    <section class="results-section" id="resultsSection" style="display: none;">
+        <div class="container">
+            <div class="result-card" id="successResult">
+                <div class="result-icon success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2 class="result-title">Verification Successful</h2>
+                <p>The property details have been verified and show no signs of fraudulent activity</p>
+                
+                <div class="result-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Property ID</span>
+                        <span>PR-2023-5A8B2C <span class="verification-badge verified-badge">Verified</span></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Survey Number</span>
+                        <span>45/2</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Current Owner</span>
+                        <span>Rajesh Kumar <span class="verification-badge verified-badge">Aadhaar Verified</span></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Property Area</span>
+                        <span>2.5 acres</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Location</span>
+                        <span>Village: Palashi, Dist: Pune</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Encumbrances</span>
+                        <span>None <span class="verification-badge verified-badge">Clear</span></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Verification Hash</span>
+                        <div>
+                            <span>SHA-256: a1b2c3d4e5f6...7890</span>
+                            <div class="hash-value">a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f67890</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="verify-btn" style="margin-top: 30px;">
+                    <i class="fas fa-download"></i> Download Verification Report
+                </button>
+            </div>
+            
+            <div class="result-card" id="fraudResult">
+                <div class="result-icon warning-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h2 class="result-title">Potential Fraud Detected</h2>
+                <p>Our system has identified discrepancies in the property details</p>
+                
+                <div class="result-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Property ID</span>
+                        <span>PR-2023-3D4E5F <span class="verification-badge fraud-badge">Discrepancy Found</span></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Survey Number</span>
+                        <span>12/7</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Claimed Owner</span>
+                        <span>Vikram Singh <span class="verification-badge fraud-badge">Not Verified</span></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Actual Owner</span>
+                        <span>Sunita Patil <span class="verification-badge verified-badge">Verified</span></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Discrepancy Details</span>
+                        <span>Ownership records show different current owner than claimed in application</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Recommended Action</span>
+                        <span style="color: var(--accent-color); font-weight: 600;">Do not proceed with loan processing. Contact land records office.</span>
+                    </div>
+                </div>
+                
+                <button class="verify-btn" style="background-color: var(--accent-color); margin-top: 30px;">
+                    <i class="fas fa-flag"></i> Report Fraud Attempt
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fraud Alerts Section -->
+    <section class="fraud-alerts">
+        <div class="container">
+            <h2 class="section-title">Recent Fraud Alerts</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Our system has prevented these recent mortgage fraud attempts</p>
+            
+            <div class="alert-card">
+                <h3><i class="fas fa-exclamation-circle"></i> Duplicate Property Fraud</h3>
+                <p>Prevented attempt to mortgage the same property (Survey No. 34/5 in Bangalore North) to two different banks using slightly modified documents. System detected identical geospatial coordinates and ownership history mismatch.</p>
+            </div>
+            
+            <div class="alert-card">
+                <h3><i class="fas fa-exclamation-circle"></i> Forged Ownership Papers</h3>
+                <p>Stopped ₹75 lakh loan application using forged ownership documents for property in Pune. System detected signature mismatch in digital records and absence of mutation certificate.</p>
+            </div>
+            
+            <div class="alert-card">
+                <h3><i class="fas fa-exclamation-circle"></i> Impersonation Attempt</h3>
+                <p>Blocked attempt by impersonator using stolen Aadhaar details to apply for loan against Hyderabad property. Biometric authentication failed during verification process.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>DigiBhoomi</h3>
+                    <p>Secure, tamper-proof land record verification system for banks and financial institutions</p>
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Verification Services</h3>
+                    <ul>
+                        <li><a href="#">Bank Verification</a></li>
+                        <li><a href="#">Loan Application</a></li>
+                        <li><a href="#">Property Due Diligence</a></li>
+                        <li><a href="#">Fraud Detection</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 456 Finance District, Mumbai, India</li>
+                        <li><i class="fas fa-phone"></i> +91 22 1234 5678</li>
+                        <li><i class="fas fa-envelope"></i> verify@landsecure.com</li>
+                        <li><i class="fas fa-headset"></i> 24/7 Fraud Hotline: 1800-123-4567</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 LandSecure. All Rights Reserved. | <a href="#" style="color: var(--secondary-color);">Privacy Policy</a> | <a href="#" style="color: var(--secondary-color);">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const formTabs = document.querySelectorAll('.form-tab');
+            const formContents = document.querySelectorAll('.form-content');
+            
+            formTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs
+                    formTabs.forEach(tab => tab.classList.remove('active'));
+                    formContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    document.getElementById(${tabId}-form).classList.add('active');
+                });
+            });
+            
+            // Verification button functionality
+            const verifyBankBtn = document.getElementById('verifyBankBtn');
+            const verifyLoanBtn = document.getElementById('verifyLoanBtn');
+            const resultsSection = document.getElementById('resultsSection');
+            const successResult = document.getElementById('successResult');
+            const fraudResult = document.getElementById('fraudResult');
+            
+            verifyBankBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+                this.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    // Show results section
+                    resultsSection.style.display = 'block';
+                    
+                    // Show appropriate result (random for demo)
+                    if (Math.random() > 0.3) {
+                        successResult.classList.add('active');
+                        fraudResult.classList.remove('active');
+                    } else {
+                        successResult.classList.remove('active');
+                        fraudResult.classList.add('active');
+                    }
+                    
+                    // Reset button
+                    this.innerHTML = '<i class="fas fa-shield-alt"></i> Verify Property';
+                    this.disabled = false;
+                    
+                    // Scroll to results
+                    resultsSection.scrollIntoView({ behavior: 'smooth' });
+                }, 2000);
+            });
+            
+            verifyLoanBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+                this.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    // Show results section
+                    resultsSection.style.display = 'block';
+                    
+                    // Show appropriate result (random for demo)
+                    if (Math.random() > 0.3) {
+                        successResult.classList.add('active');
+                        fraudResult.classList.remove('active');
+                    } else {
+                        successResult.classList.remove('active');
+                        fraudResult.classList.add('active');
+                    }
+                    
+                    // Reset button
+                    this.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application';
+                    this.disabled = false;
+                    
+                    // Scroll to results
+                    resultsSection.scrollIntoView({ behavior: 'smooth' });
+                }, 2000);
+            });
+            
+            // Simulate hash verification
+            document.querySelectorAll('.hash-value').forEach(hash => {
+                const originalText = hash.textContent;
+                let currentText = '';
+                let i = 0;
+                
+                const timer = setInterval(() => {
+                    if (i < originalText.length) {
+                        currentText += originalText.charAt(i);
+                        hash.textContent = currentText;
+                        i++;
+                    } else {
+                        clearInterval(timer);
+                    }
+                }, 20);
+            });
+        });
+    </script>
+</body>
+</html>
