@@ -5,7 +5,7 @@
 ## Overview
 VeriFact-AI is a **Next.js + Flask**-based platform that verifies news authenticity using AI-powered **similarity search** and **web scraping**. The core feature is an **AI Agent** that searches the web for credible sources and compares them to the article in question.
 
-Additionally, we've built a **browser extension** that allows users to verify news articles directly from any source they are reading.
+Additionally, we've built a **browser extension** that allows users to verify news articles directly from any source they are reading. For images, we implemented multiple OCR models such as EasyOCR, TesseractOCR and our own Tensorflow model, but the best was Mistral OCR. Though its API is payment only, we decided to implement Gemini's 2.0 Flash model for very low cost as well as high efficiency,
 
 ## Tech Stack
 ### Frontend (Next.js)
@@ -29,6 +29,7 @@ Additionally, we've built a **browser extension** that allows users to verify ne
 - The **Chrome Extension** allows users to verify news instantly.
 - It scans the current article and provides real-time authenticity predictions.
 - Uses the same AI model as the platform for consistency.
+
 
 ## How It Works
 1. **User inputs or visits a news article.**
@@ -59,7 +60,7 @@ https://github.com/user-attachments/assets/5ff08adc-f1cb-414a-be72-12f743471380
 - 🌍 Expanding to multiple languages for broader accessibility.
 
 ## Team
-🚀 **Half Baked Coders** - A team passionate about **AI, Web3, and Fullstack development**!
+🚀 **Half Baked Coders** 
 
 ---
 Let us know if you have any feedback or ideas to improve the project! 🚀
