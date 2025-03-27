@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - Web Echos</title>
+    <link rel="stylesheet" href="home.css" />
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (!sessionStorage.getItem("visited")) {
+          sessionStorage.setItem("visited", "true");
+          window.location.href = "home.html";
+        }
+      });
+
+      let recognition;
+      let isListening = false;
+
+      function toggleVoiceRecognition() {
+        if (!isListening) {
+          recognition = new (window.SpeechRecognition ||
+            window.webkitSpeechRecognition)();
+          recognition.lang = "en-US";
+          recognition.continuous = true;
+          recognition.interimResults = false;
+
+          recognition.onresult = function (event) {
+            const command =
+              event.results[
+                event.results.length - 1
+              ][0].transcript.toLowerCase();
+            if (command.includes("go to home")) {
+              window.location.href = "home.html";
+            } else if (command.includes("go to get started")) {
+              window.location.href = "index.html";
+            } else if (command.includes("go to contact us")) {
+              window.location.href = "contact.html";
+            } else if (command.includes("go to echos ai")) {
+              window.location.href = "chatbox.html";
+            }
+          };
+
+          recognition.start();
+          isListening = true;
+          document.getElementById("mic-button").innerText = "⏹ Stop";
+        } else {
+          recognition.stop();
+          isListening = false;
+          document.getElementById("mic-button").innerText = "🎤";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Web Echos</h1>
+      <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href="index.html">Get Started</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="chatbox.html">Echos.AI</a>
+        <a href="signUp.html">Login</a>
+        <button class="button" onclick="exportContent()">Export Site</button>
+        <button
+          class="button"
+          id="mic-button"
+          onclick="toggleVoiceRecognition()"
+        >
+          🎤
+        </button>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>Welcome to Web Echos</h2>
+      <p>
+        Your ultimate platform for creating SEO-optimized static sites. <br />
+        Use our tools to generate, preview, and export your custom webpages
+        effortlessly.
+      </p>
+      <button class="button" onclick="window.location.href='index.html'">
+        Get Started
+      </button>
+      <div class="features">
+        <div class="feature-box">
+          <h3>SEO Optimized</h3>
+          <p>Boost your website's search engine rankings effortlessly.</p>
+        </div>
+        <div class="feature-box">
+          <h3>Lightning Fast</h3>
+          <p>Experience rapid page load speeds with our generator.</p>
+        </div>
+        <div class="feature-box">
+          <h3>Easy Customization</h3>
+          <p>Personalize every aspect of your static site with ease.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>&copy; 2025 Web Echos. Designed and Developed by Team Web Echos.</p>
+      <div class="social-links">
+        <a href="#">Twitter</a> | <a href="#">LinkedIn</a> |
+        <a href="#">GitHub</a>
+      </div>
+    </footer>
+  </body>
+</html>

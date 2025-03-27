@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat with Echos.ai</title>
+    <link rel="stylesheet" href="chatbox.css" />
+    <script>
+      let recognition;
+      let isListening = false;
+
+      function toggleVoiceRecognition() {
+        if (!isListening) {
+          recognition = new (window.SpeechRecognition ||
+            window.webkitSpeechRecognition)();
+          recognition.lang = "en-US";
+          recognition.continuous = true;
+          recognition.interimResults = false;
+
+          recognition.onresult = function (event) {
+            const command = event.results[
+              event.results.length - 1
+            ][0].transcript
+              .toLowerCase()
+              .trim();
+
+            if (command.includes("go to home")) {
+              window.location.href = "home.html";
+            } else if (command.includes("go to get started")) {
+              window.location.href = "index.html";
+            } else if (command.includes("go to contact us")) {
+              window.location.href = "contact.html";
+            } else if (command.includes("go to echos ai")) {
+              window.location.href = "chatbox.html";
+            } else {
+              document.getElementById("userInput").value = command;
+              sendMessage();
+            }
+          };
+
+          recognition.start();
+          isListening = true;
+          document.getElementById("mic-button").innerText = "⏹ Stop";
+        } else {
+          recognition.stop();
+          isListening = false;
+          document.getElementById("mic-button").innerText = "🎤";
+        }
+      }
+
+      function sendMessage() {
+        let userInput = document.getElementById("userInput");
+        let chatBox = document.getElementById("chatBox");
+
+        let messageText = userInput.value.trim();
+        if (messageText === "") return;
+
+        let userMessage = document.createElement("div");
+        userMessage.classList.add("message", "user-message");
+        userMessage.innerText = messageText;
+        chatBox.appendChild(userMessage);
+
+        userInput.value = "";
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        setTimeout(() => {
+          let botMessage = document.createElement("div");
+          botMessage.classList.add("message", "bot-message");
+
+          let botName = document.createElement("div");
+          botName.classList.add("bot-name");
+          botName.innerText = "Echos.ai";
+
+          botMessage.appendChild(botName);
+          botMessage.appendChild(
+            document.createTextNode("I'm Echos.ai. You said: " + messageText)
+          );
+          chatBox.appendChild(botMessage);
+          chatBox.scrollTop = chatBox.scrollHeight;
+        }, 1000);
+      }
+
+      function handleKeyPress(event) {
+        if (event.key === "Enter") {
+          sendMessage();
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Web Echos</h1>
+      <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href="index.html">Get Started</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="chatbox.html">Echos.AI</a>
+        <button class="button" onclick="exportContent()">Export Site</button>
+        <button
+          class="button"
+          id="mic-button"
+          onclick="toggleVoiceRecognition()"
+        >
+          🎤
+        </button>
+      </div>
+    </div>
+
+    <div class="chat-container">
+      <div class="chat-header">Chat with Echos.ai</div>
+      <div class="chat-box" id="chatBox">
+        <div class="bot-message message">
+          <div class="bot-name">Echos.ai</div>
+          Hello! How can I assist you today?
+        </div>
+      </div>
+      <div class="chat-input">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Type a message..."
+          onkeypress="handleKeyPress(event)"
+        />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </body>
+</html>

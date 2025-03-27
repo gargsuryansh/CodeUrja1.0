@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web - Echos</title>
+
+    <meta
+      name="description"
+      content="Web Echos - A dynamic platform to create SEO-optimized static sites."
+    />
+    <meta
+      name="keywords"
+      content="static site generator, SEO, Web Echos, website builder"
+    />
+    <meta name="author" content="Garv Sharma" />
+
+    <meta property="og:title" content="Web Echos - Static Site Generator" />
+    <meta
+      property="og:description"
+      content="Create SEO-optimized, lightweight static sites with Web Echos."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://your-website-url.com" />
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <link rel="stylesheet" href="index.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Web Echos</h1>
+      <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href="index.html">Get Started</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="chatbox.html">Echos.AI</a>
+        <button class="button" onclick="exportContent()">Export Site</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>Markdown to HTML Converter</h2>
+
+      <input type="text" id="pageTitle" placeholder="Enter Page Title" />
+      <input
+        type="text"
+        id="metaDescription"
+        placeholder="Enter Meta Description"
+      />
+      <input type="text" id="keywords" placeholder="Enter Keywords" />
+
+      <select id="templateSelector" onchange="updatePreview()">
+        <option value="Simple">Simple</option>
+        <option value="Blog">Blog</option>
+      </select>
+
+      <textarea
+        id="markdownEditor"
+        placeholder="Enter Markdown content here, including images and videos..."
+      ></textarea>
+      <div id="preview"></div>
+
+      <div class="buttons">
+        <button onclick="convertMarkdown()">Convert to HTML</button>
+        <button onclick="previewWebpage()">Preview Webpage</button>
+        <button onclick="uploadMedia('image')">Upload Image</button>
+        <button onclick="uploadMedia('video')">Upload Video</button>
+      </div>
+
+      <input
+        type="file"
+        id="mediaInput"
+        style="display: none"
+        onchange="handleMediaUpload()"
+      />
+    </div>
+
+    <footer class="footer">
+      <p>&copy; 2025 Web Echos. Designed and Developed by Garv Sharma.</p>
+      <div class="social-links">
+        <a href="#">Twitter</a> | <a href="#">LinkedIn</a> |
+        <a href="#">GitHub</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
