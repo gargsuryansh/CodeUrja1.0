@@ -1,0 +1,10 @@
+<web-app xmlns="http://jakarta.ee/xml/ns/jakartaee"
+    version="5.0">
+    
+    <multipart-config>
+        <max-file-size>10485760</max-file-size>  <!-- 10MB -->
+        <max-request-size>52428800</max-request-size>  <!-- 50MB -->
+        <file-size-threshold>1024</file-size-threshold>
+    </multipart-config>
+
+</web-app>
